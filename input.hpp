@@ -17,9 +17,13 @@ void normal();
 */
 int keypress();
 
+//My Functions
 void Show_Game_Name();
+
+void Show_About_Game();
 
 void gotoxy(int x, int y);
 
+void Color_Cout(std::string text, int text_color);
 #endif // INPUT_HPP
 
