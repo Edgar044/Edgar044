@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 
-int main(){
+int main(){ 
     Show_Game_Name();
     Show_Menu();
 

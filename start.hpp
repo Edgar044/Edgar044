@@ -8,7 +8,8 @@
 void Show_Board(int size);
 
 
-void Start_Game(const int board_size){
+void Start_Game(const int board_size){// xaxy skselu hamar tpume xaxi dashty ev 
+                                      // stexcum hamapatasxan matrixy
     int num=0;
     int matrix[board_size][board_size];
     system("clear");

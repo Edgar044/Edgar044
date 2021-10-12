@@ -56,7 +56,7 @@ int keypress(){
     return -1;
 }
 
-void Color_Cout(std::string text, int text_color)
+void Color_Cout(std::string text, int text_color)// gunavor tpelu functia
 {
         switch(text_color)
         { 
@@ -74,31 +74,61 @@ void Color_Cout(std::string text, int text_color)
 
 
 
-void gotoxy(int x, int y){
+void gotoxy(const int x,const int y){// kursori sharji hamar ogtagorcum enq printf hramany
+                          // vorin vorpes parametrer talis enq kordinatnery
     printf("%c[%d;%df",0x1B, y, x);
 }
 
-void Show_Game_Name(){
+void Show_Game_Name(){// xaxi anuny tpelu hamar
     system("clear");
 
-Color_Cout("\t********  **        ****  *********   ****  ***      **   ********           ********     ***           **********    **********  **        ********",4); //sleep(1);  
-Color_Cout("\t**        **         **    **     **   **   ***      **  **      **          **     **    ** **                **            **   **        **       ",4);// sleep(1);
-Color_Cout("\t**        **         **    **     **   **   ** *     **  **      **          **     **    **  **              **            **    **        **       ",4); //sleep(1);
-Color_Cout("\t**        **         **    **     **   **   **  *    **  **      **          **     **    **   **            **            **     **        *******  ",4); //sleep(1);
-Color_Cout("\t********  **         **    **     **   **   **   *   **  **                  ********     ********          **            **      **        **       ",4); //sleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **    *  **  **   *****          **           **     **        **            **       **        **       ",4); //sleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **     * **  **      **          **           **      **      **            **        **        **       ",4); //sleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **      ***  **      **          **           **       **    **            **         **        **       ",4); //sleep(1);
-Color_Cout("\t********  ********  ****  *********   ****  **      ***   ********           **           **        **  **********    **********  ********  ******** ",4); //sleep(1);
+Color_Cout("\t********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ********",4); usleep(100);  
+Color_Cout("\t**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(100);
+Color_Cout("\t**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(100);
+Color_Cout("\t**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(100);
+Color_Cout("\t********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(100);
+Color_Cout("\t      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(100);
+Color_Cout("\t      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(100);
+Color_Cout("\t      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(100);
+Color_Cout("\t********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(100);
 
 }
 
-void Show_About_Game(){
+void Show_About_Game(){//xaxi masin informacia
     Show_Game_Name();
     gotoxy(80,12);
-     
     Color_Cout("About Game\n",5);
     
+    std::cout<<"\t\t\t\t\t\t\tA sliding puzzle or fiften is a puzzle combination that chelenges\n"  ;      
+    std::cout<<"\t\t\t\t\t\t\tthe player to slide along certain paths  in order to  establish a \n";
+    std::cout<<"\t\t\t\t\t\t\tcertain final configuration. The moving parts can be simple shopes\n" ;
+    std::cout<<"\t\t\t\t\t\t\tor they can be printed with colors, patterns, parts of a larger\n" ;
+    std::cout<<"\t\t\t\t\t\t\timage, numbers or letters. Sliding puzzles are essentially\n"; 
+    std::cout<<"\t\t\t\t\t\t\ttwo-dimensional in nature. The oldest type of sliding puzzle is the \n";
+    std::cout<<"\t\t\t\t\t\t\tFifteen puzzle, invented by Noyes Chapman in 1880: to Sam Loyd. \n";
+    std::cout<<"\t\t\t\t\t\t\t   It can be shown that exactly half of all possible 20,922,789,888,000\n";
+    std::cout<<"\t\t\t\t\t\t\t(= 16!) Initial positions of the tags cannot be brought to the\n";
+    std::cout<<"\t\t\t\t\t\t\tassembled form: \n";
+    std::cout<<"\t\t\t\t\t\t\t   If we allow the box to rotate 90 degrees, in which the images of the\n";
+    std::cout<<"\t\t\t\t\t\t\tnumbers will be lying on their side, then we can translate the unsolvable\n";
+    std::cout<<"\t\t\t\t\t\t\tcombinations into solvable ones (and vice versa). Thus, if instead of\n";
+    std::cout<<"\t\t\t\t\t\t\tnumbers on the knuckles, you put dots and do not fix the position of the box,\n";
+    std::cout<<"\t\t\t\t\t\t\tthen there will be no unsolvable combinations at all.\n";
+
+    gotoxy(80,30);
+    Color_Cout("How to play\n",5);
+    
+
+
+    for(char key = -1;;){ 
+        cbreak();
+        key = keypress();
+        normal();
+        if(key == 27){
+            break;
+        }
+
+    }
 
 
 

@@ -11,6 +11,11 @@ const int Menu_Count = 4;
 int Menu_index = 0;
 std::string Menu[Menu_Count] = {"Start", "Options", "About", "Exit"};
 
+/*Show_Menu functian nra hamar e vorpisi katari menyui funqciobaly ev 
+ * usery aveli hesht haskana te inch hraman e uzum katarel
+ * cucichi texasharjy katarvwum e keypress i ognutyamb:
+ * 
+ * */
 
 void Show_Menu(){
     
@@ -28,10 +33,10 @@ void Show_Menu(){
 
         cbreak();
         key = keypress();
-        normal();
+        
         
         switch(key){
-            case 'w': case 'W':
+            case 'w': case 'W':// "W" swxmwlis cucichy kbarcrana verev 
                 if(Menu_index != 0){
                     gotoxy(80,15 + Menu_index); Color_Cout(Menu[Menu_index],7); 
                     --Menu_index;
@@ -44,7 +49,7 @@ void Show_Menu(){
                     gotoxy(80,15 + Menu_index); Color_Cout(Menu[Menu_index],3);
                 } break;
                 
-            case 's': case 'S':
+            case 's': case 'S':// "S"sexmelis cucichy kijni nerqev
                 if(Menu_index != Menu_Count - 1){
                     gotoxy(80,15 + Menu_index); Color_Cout(Menu[Menu_index],7);
                     ++Menu_index;
@@ -60,18 +65,19 @@ void Show_Menu(){
 
                 
 
-            case 0x0A:
-
-                switch(Menu_index){
+            case 0x0A:// erb sexmenq enter kkatari hamapatasxan indexov "case"-y 
+                bool retur_to_menu = 0;
+                switch(Menu_index){                    
                     case 0: Start_Game(4); break;//start Game
                     case 1:  break;//open options
-                    case 2: Show_About_Game(); break;
+                    case 2: Show_About_Game(); retur_to_menu = 1; break;
                     case 3: exit(0); break;
 
-                }
+                } break;
             }
 
     }
+    normal();
 }
 
 
