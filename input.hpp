@@ -18,12 +18,12 @@ void normal();
 int keypress();
 
 //My Functions
-void Show_Game_Name();
+void Show_Game_Name();//cuyc e talis xaxi anuny 
 
-void Show_About_Game();
+void Show_About_Game();//cuyc e talis xaxi masin
 
-void gotoxy(int x, int y);
+void gotoxy(int x, int y);//kursori texasharji functia
 
-void Color_Cout(std::string text, int text_color);
+void Color_Cout(std::string text, int text_color);//gunavorman functia
 #endif // INPUT_HPP
 
