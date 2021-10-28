@@ -11,15 +11,16 @@ const int Menu_Count = 4;
 int Menu_index = 0;
 std::string Menu[Menu_Count] = {"Start", "Options", "About", "Exit"};
 
-/*Show_Menu functian nra hamar e vorpisi katari menyui funqciobaly ev 
+/*Show_Menu functian nra hamar e vorpisi katari menyui funqcionaly ev 
  * usery aveli hesht haskana te inch hraman e uzum katarel
  * cucichi texasharjy katarvwum e keypress i ognutyamb:
  * 
  * */
 
+void step(int** Mat, int &i, int &j, int size, int case_num) ;
+
 void Show_Menu(){
-    
-    
+   
     for(int i=0; i<Menu_Count; ++i){
        gotoxy(80,15 + i); 
        Color_Cout(Menu[i],7); std::cout << "\n";
@@ -79,6 +80,28 @@ void Show_Menu(){
     }
     normal();
 }
+
+       
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif
