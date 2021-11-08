@@ -1,7 +1,6 @@
 //fun.hpp
 #ifndef FUN_H
 #define FUN_H
-
 #include <iostream>
 #include <stdlib.h>
 #include "input.hpp"
@@ -20,7 +19,8 @@ std::string Menu[Menu_Count] = {"Start", "Options", "About", "Exit"};
 void step(int** Mat, int &i, int &j, int size, int case_num) ;
 
 void Show_Menu(){
-   
+    //system("clear");
+    Show_Game_Name();
     for(int i=0; i<Menu_Count; ++i){
        gotoxy(80,15 + i); 
        Color_Cout(Menu[i],7); std::cout << "\n";
@@ -37,7 +37,7 @@ void Show_Menu(){
         
         
         switch(key){
-            case 'w': case 'W':// "W" swxmwlis cucichy kbarcrana verev 
+            case 'w': case 'W':// "W" sexmelis cucichy kbarcrana verev 
                 if(Menu_index != 0){
                     gotoxy(80,15 + Menu_index); Color_Cout(Menu[Menu_index],7); 
                     --Menu_index;
@@ -69,12 +69,16 @@ void Show_Menu(){
             case 0x0A:// erb sexmenq enter kkatari hamapatasxan indexov "case"-y 
                 bool retur_to_menu = 0;
                 switch(Menu_index){                    
-                    case 0: Start_Game(4); break;//start Game
+                    case 0: Start_Game(2); break;//start Game
                     case 1:  break;//open options
                     case 2: Show_About_Game(); retur_to_menu = 1; break;
                     case 3: exit(0); break;
 
-                } break;
+
+
+                }
+                Show_Menu();
+                       
             }
 
     }

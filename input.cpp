@@ -36,7 +36,7 @@ void normal(){
         new_tty = orig_tty;
     }
 }
-       // Checks keyboard buffer (stdin) and returns key
+       // Checks keyboard buffer (stdin) and returns  key
        // pressed, or -1 for no key pressed
 int keypress(){
 
@@ -80,17 +80,17 @@ void gotoxy(const int x,const int y){// kursori sharji hamar ogtagorcum enq prin
 }
 
 void Show_Game_Name(){// xaxi anuny tpelu hamar
-    system("clear");
+    system("clear");gotoxy(0,0);
 
-Color_Cout("\t********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ********",4); usleep(100);  
-Color_Cout("\t**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(100);
-Color_Cout("\t**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(100);
-Color_Cout("\t**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(100);
-Color_Cout("\t********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(100);
-Color_Cout("\t      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(100);
-Color_Cout("\t      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(100);
-Color_Cout("\t      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(100);
-Color_Cout("\t********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(100);
+Color_Cout("\t********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); sleep(1);  
+Color_Cout("\t**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(1);
+Color_Cout("\t**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(1);
+Color_Cout("\t**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(1);
+Color_Cout("\t********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(1);
+Color_Cout("\t      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(1);
+Color_Cout("\t      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(1);
+Color_Cout("\t      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(1);
+Color_Cout("\t********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); sleep(1);
 
 }
 

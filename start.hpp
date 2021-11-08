@@ -4,17 +4,19 @@
 #include <iomanip>
 #include "input.hpp"
 #include "fun.hpp"
-
+//head of functions for Start_Game
 void Show_Board(int size);
 void step(int **Mat, int &i, int &j, int size,  char step_num );
-void Start_Game(const int board_size){// xaxy skselu hamar tpume xaxi dashty ev 
-                                      // stexcum hamapatasxan matrixy
+bool chek_win(int **Mat, const int size);
+//the Start main function
+void Start_Game(const int board_size){
+
     int num=0;
     int** matrix = new int*[board_size];
     for(int i = 0; i < board_size; ++i){
         matrix[i] = new int[board_size];
     }
-    system("clear");
+    //system("clear");
     Show_Game_Name();     
     for(int i=0; i<board_size; ++i){
         for(int j=0; j<board_size; ++j){
@@ -36,26 +38,61 @@ void Start_Game(const int board_size){// xaxy skselu hamar tpume xaxi dashty ev
     int index_j = board_size - 1;
     int ptr_x=80 + index_i*4;//cucichi
     int ptr_y=15 + index_j*2;//skzbnakan kordinatnery
-    int degree_of_mix = 10;
     
+    bool mix=0, win = 0;    
     for(char key_1 = -1; key_1 != 27;){
         ptr_x=80 + index_j*4; 
         ptr_y=15 + index_i*2;
         gotoxy(ptr_x, ptr_y);std::cout<<"  ";
         cbreak();
-        do{
-            int step_key; step_key= (rand()%4+1) * 2;
-            step(matrix, index_i, index_j, board_size, step_key);
-        }while(index_i == index_j);
-                   
+        
+        if(!mix){
+            mix=1; // xarnum e xaxaqarery
+            do{
+                int step_key; step_key= (rand()%4+1) * 2;
+                step(matrix, index_i, index_j, board_size, step_key);
+            }while(matrix[board_size-1][board_size-1] != 1);
+
+            do{
+                int step_key; step_key= (rand()%4+1) * 2;
+                step(matrix, index_i, index_j, board_size, step_key);
+            }while(matrix[board_size-1][board_size-1] != board_size*board_size);
+            //step(matrix, index_i, index_j, board_size, 8);
+        }
+       
+    
         key_1 = keypress();
         step(matrix, index_i, index_j, board_size, key_1);
-
+        win = chek_win(matrix, board_size);
         //normal();
+        //
+        if(key_1 == 'q' ||  win == 1){  
+            //diliting arrays
+            for(int i=0; i<board_size; ++i){
+                delete[] matrix[i];
+            }
+            delete[] matrix;
+            break;
+        }
+    
+    } 
+    if(win){
+      gotoxy(80 + (board_size-1)*4, 15 + (board_size-1)*2); std::cout<<std::setw(2)<<board_size*board_size;
+      for(char key_2 = -1;;){
+
+            gotoxy(60,20);std::cout<<"YOU WIN";
+            cbreak();
+            key_2 = keypress();
+            if(key_2 == 'q'){
+                break; system("reset");
+            }
+        }  
     }
 
+    
 }
 
+//functions bodies
 void Show_Board(int size){
     int lenght = size * 4;
     int hight = size * 2;
@@ -147,9 +184,23 @@ void step(int **Mat, int &i, int &j,const int size, char step_num ){
                     Mat[i][j] = Mat[i][j] - Mat[i][j-1];
                     --j;
                 }
-                break; 
- }
+                break;
+ };
 
 };
+ 
+bool chek_win(int **Mat, const int size){
+    int count = 1; 
+    for(int i=0; i<size; ++i){
+         for(int j=0; j<size; ++j){
+             if(Mat[i][j] != count){
+                 return 0;
+             } count++;
+         }
+     }
+     return 1;
+ }
+
+
 
 #endif
