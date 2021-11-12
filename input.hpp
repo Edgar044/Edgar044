@@ -18,9 +18,9 @@ void normal();
 int keypress();
 
 //My Functions
-void Show_Game_Name();//cuyc e talis xaxi anuny 
+void Show_Game_Name(const int Center);//cuyc e talis xaxi anuny 
 
-void Show_About_Game();//cuyc e talis xaxi masin
+void Show_About_Game(const int Center);//cuyc e talis xaxi masin
 
 void gotoxy(int x, int y);//kursori texasharji functia
 

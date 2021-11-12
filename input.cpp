@@ -7,6 +7,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 
 int tty_mode = 0;
 struct termios orig_tty;
@@ -69,7 +70,8 @@ void Color_Cout(std::string text, int text_color)// gunavor tpelu functia
             case  7: std::cout << "\x1b[33;1m" << text << "\x1b[0m\n"; break; // yellow     7
             case  8: std::cout << "\x1b[97;1m" << text << "\x1b[0m\n"; break; // white      8
             default: std::cout << "\x1b[97;1m" << text << "\x1b[0m\n";
-                                                                                                                                                                              }
+                                                        
+        }
 }
 
 
@@ -79,43 +81,67 @@ void gotoxy(const int x,const int y){// kursori sharji hamar ogtagorcum enq prin
     printf("%c[%d;%df",0x1B, y, x);
 }
 
-void Show_Game_Name(){// xaxi anuny tpelu hamar
-    system("clear");gotoxy(0,0);
-
-Color_Cout("\t********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); sleep(1);  
-Color_Cout("\t**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(1);
-Color_Cout("\t**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(1);
-Color_Cout("\t**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(1);
-Color_Cout("\t********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(1);
-Color_Cout("\t      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(1);
-Color_Cout("\t********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); sleep(1);
+void Show_Game_Name(const int centerCol ){// xaxi anuny tpelu hamar
+   int startCol = centerCol - (146 / 2);
+ system("clear");
+gotoxy(startCol,1);
+Color_Cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(1);
+gotoxy(startCol,2);
+Color_Cout("**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(1);
+gotoxy(startCol,3);
+Color_Cout("**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(1);
+gotoxy(startCol,4);
+Color_Cout("**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(1);
+gotoxy(startCol,5);
+Color_Cout("********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(1);
+gotoxy(startCol,6);
+Color_Cout("      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(1);
+gotoxy(startCol,7);
+Color_Cout("      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(1);
+gotoxy(startCol,8);
+Color_Cout("      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(1);
+gotoxy(startCol,9);
+Color_Cout("********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(1);
 
 }
 
-void Show_About_Game(){//xaxi masin informacia
-    Show_Game_Name();
-    gotoxy(80,12);
+void Show_About_Game(const int Center){//xaxi masin informacia
+    Show_Game_Name(Center);
+    int About_Col = Center - (66/2); // 66y mer mek toxi erkarutyunn e 
+    gotoxy(Center - 5,12);
     Color_Cout("About Game\n",5);
     
-    std::cout<<"\t\t\t\t\t\t\tA sliding puzzle or fiften is a puzzle combination that chelenges\n"  ;      
-    std::cout<<"\t\t\t\t\t\t\tthe player to slide along certain paths  in order to  establish a \n";
-    std::cout<<"\t\t\t\t\t\t\tcertain final configuration. The moving parts can be simple shopes\n" ;
-    std::cout<<"\t\t\t\t\t\t\tor they can be printed with colors, patterns, parts of a larger\n" ;
-    std::cout<<"\t\t\t\t\t\t\timage, numbers or letters. Sliding puzzles are essentially\n"; 
-    std::cout<<"\t\t\t\t\t\t\ttwo-dimensional in nature. The oldest type of sliding puzzle is the \n";
-    std::cout<<"\t\t\t\t\t\t\tFifteen puzzle, invented by Noyes Chapman in 1880: to Sam Loyd. \n";
-    std::cout<<"\t\t\t\t\t\t\t   It can be shown that exactly half of all possible 20,922,789,888,000\n";
-    std::cout<<"\t\t\t\t\t\t\t(= 16!) Initial positions of the tags cannot be brought to the\n";
-    std::cout<<"\t\t\t\t\t\t\tassembled form: \n";
-    std::cout<<"\t\t\t\t\t\t\t   If we allow the box to rotate 90 degrees, in which the images of the\n";
-    std::cout<<"\t\t\t\t\t\t\tnumbers will be lying on their side, then we can translate the unsolvable\n";
-    std::cout<<"\t\t\t\t\t\t\tcombinations into solvable ones (and vice versa). Thus, if instead of\n";
-    std::cout<<"\t\t\t\t\t\t\tnumbers on the knuckles, you put dots and do not fix the position of the box,\n";
-    std::cout<<"\t\t\t\t\t\t\tthen there will be no unsolvable combinations at all.\n";
-
-    gotoxy(80,30);
+    gotoxy(About_Col,14);
+    std::cout<<"A sliding puzzle or fiften is a puzzle combination that chelenges\n"  ;      
+    gotoxy(About_Col,15);
+    std::cout<<"the player to slide along certain paths  in order to  establish a \n";
+    gotoxy(About_Col,16);
+    std::cout<<"certain final configuration. The moving parts can be simple shopes\n" ;
+    gotoxy(About_Col,17);
+    std::cout<<"tor they can be printed with colors, patterns, parts of a larger\n" ;
+    gotoxy(About_Col,18);
+    std::cout<<"timage, numbers or letters. Sliding puzzles are essentially\n"; 
+    gotoxy(About_Col,19);
+    std::cout<<"two-dimensional in nature. The oldest type of sliding puzzle is the \n";
+    gotoxy(About_Col,20);
+    std::cout<<"Fifteen puzzle, invented by Noyes Chapman in 1880: to Sam Loyd. \n";
+    gotoxy(About_Col,21);
+    std::cout<<"   It can be shown that exactly half of all possible 20,922,789,888,000\n";
+    gotoxy(About_Col,22);
+    std::cout<<"(= 16!) Initial positions of the tags cannot be brought to the\n";
+    gotoxy(About_Col,23);
+    std::cout<<"assembled form: \n";
+    gotoxy(About_Col,24);
+    std::cout<<"   If we allow the box to rotate 90 degrees, in which the images of the\n";
+    gotoxy(About_Col,25);
+    std::cout<<"tnumbers will be lying on their side, then we can translate the unsolvable\n";
+    gotoxy(About_Col,26);
+    std::cout<<"tcombinations into solvable ones (and vice versa). Thus, if instead of\n";
+    gotoxy(About_Col,27);
+    std::cout<<"tnumbers on the knuckles, you put dots and do not fix the position of the box,\n";
+    gotoxy(About_Col,28);
+    std::cout<<"then there will be no unsolvable combinations at all.\n";
+    gotoxy(Center - 5,30);
     Color_Cout("How to play\n",5);
     
 
