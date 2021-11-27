@@ -75,38 +75,59 @@ void Color_Cout(std::string text, int text_color)// gunavor tpelu functia
 }
 
 
+void Color_Cout(int text, int text_color)// gunavor tpelu functia
+{
+        switch(text_color)
+        { 
+            case  1: std::cout << "\x1b[90;1m" << text << "\x1b[0m\n"; break; // gray       1
+            case  2: std::cout << "\x1b[34;1m" << text << "\x1b[0m\n"; break; // blue       2
+            case  3: std::cout << "\x1b[32;1m" << text << "\x1b[0m\n"; break; // green      3
+            case  4: std::cout << "\x1b[36;1m" << text << "\x1b[0m\n"; break; // cyan       4
+            case  5: std::cout << "\x1b[31;1m" << text << "\x1b[0m\n"; break; // red        5
+            case  6: std::cout << "\x1b[95;1m" << text << "\x1b[0m\n"; break; // pink       6
+            case  7: std::cout << "\x1b[33;1m" << text << "\x1b[0m\n"; break; // yellow     7
+            case  8: std::cout << "\x1b[97;1m" << text << "\x1b[0m\n"; break; // white      8
+            default: std::cout << "\x1b[97;1m" << text << "\x1b[0m\n";
+                                                        
+        }
+}
+
 
 void gotoxy(const int x,const int y){// kursori sharji hamar ogtagorcum enq printf hramany
                           // vorin vorpes parametrer talis enq kordinatnery
     printf("%c[%d;%df",0x1B, y, x);
 }
 
-void Show_Game_Name(const int centerCol ){// xaxi anuny tpelu hamar
-   int startCol = centerCol - (146 / 2);
+void Show_Game_Name(const int centerCol, const bool sleep_show ){// xaxi anuny tpelu hamar
+   const int startCol = centerCol - (146 / 2);
+   int sleep_time = 0;
+   if(sleep_show){
+       sleep_time = 150000;
+   }
  system("clear");
 gotoxy(startCol,1);
-Color_Cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(1);
+Color_Cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(sleep_time);
 gotoxy(startCol,2);
-Color_Cout("**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(1);
+Color_Cout("**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,3);
-Color_Cout("**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(1);
+Color_Cout("**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,4);
-Color_Cout("**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(1);
+Color_Cout("**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(sleep_time);
 gotoxy(startCol,5);
-Color_Cout("********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(1);
+Color_Cout("********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,6);
-Color_Cout("      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(1);
+Color_Cout("      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,7);
-Color_Cout("      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(1);
+Color_Cout("      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,8);
-Color_Cout("      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(1);
+Color_Cout("      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(sleep_time);
 gotoxy(startCol,9);
-Color_Cout("********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(1);
-
+Color_Cout("********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(sleep_time);
 }
 
 void Show_About_Game(const int Center){//xaxi masin informacia
-    Show_Game_Name(Center);
+    const bool Sleep_Show = 0;
+    Show_Game_Name(Center,Sleep_Show);
     int About_Col = Center - (66/2); // 66y mer mek toxi erkarutyunn e 
     gotoxy(Center - 5,12);
     Color_Cout("About Game\n",5);
