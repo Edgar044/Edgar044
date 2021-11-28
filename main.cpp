@@ -5,11 +5,9 @@
 #include "menu.hpp"
 #include "start.hpp"
 #include "input.hpp"
-
+#include "user.hpp"
 
 void userWinSize(int* winRow, int* winCol);
-
-
 
 int main(){
     int userRowSize = 0;

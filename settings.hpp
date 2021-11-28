@@ -7,7 +7,8 @@
 #include <unistd.h>
 #include "input.hpp"
 
-const int Settings_Count = 3;
+const int game_name_hight = 15;
+const int Settings_count = 3;
 int Settings_index = 0;
 
 void Settings_Game(const int Center, int *Board_Size, int *Color_index){
@@ -15,22 +16,22 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
     const bool Sleep_Show = 0;
     Show_Game_Name(Center, Sleep_Show);
     int Settings_Col = Center - 3;    
-    std::string Settings[Settings_Count]={"Board Size  _", "Board Color _","Users"};
+    std::string Settings[Settings_count]={"Board Size  _", "Board Color _","Users"};
     const int Color_Count = 8;
     std::string Colors[Color_Count] = {"White  ", "Gray   ", "Blue   ", "Green  ",
                                        "Cyan   ", "Red    ", "Pink   ", "Yellow "};
     
-    for(int i = 0; i < Settings_Count; ++i){
-        gotoxy(Settings_Col,15 + i);
+    for(int i = 0; i < Settings_count; ++i){
+        gotoxy(Settings_Col,game_name_hight + i);
         Color_Cout(Settings[i],7); std::cout<<"\n";
     }
-    gotoxy(Settings_Col, 15 + Settings_index); // arajbayin yntrvac toxy
+    gotoxy(Settings_Col, game_name_hight + Settings_index); // arajbayin yntrvac toxy
     Color_Cout(Settings[Settings_index],3);
 
-    gotoxy(Settings_Col + 14, 15 + Settings_index);// yntrvac chapi skzbnarjeqavorum
+    gotoxy(Settings_Col + 14, game_name_hight + Settings_index);// yntrvac chapi skzbnarjeqavorum
     Color_Cout(*Board_Size, 5);
     
-    gotoxy(Settings_Col + 14, 15 + 1 + Settings_index);
+    gotoxy(Settings_Col + 14, game_name_hight + 1 + Settings_index);
     Color_Cout(Colors[*Color_index],*Color_index);
     
     int Size;
@@ -42,26 +43,26 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
     
             case 'w': case 'W': 
                 if(Settings_index != 0){
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],7); 
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],7); 
                     --Settings_index;
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],3);
         
                 } else {
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],7);
-                    Settings_index = Settings_Count - 1;
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],7);
+                    Settings_index = Settings_count - 1;
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],3);
                 
                 } break;
             
             case 's': case 'S':
-                if(Settings_index != Settings_Count - 1){
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],7);
+                if(Settings_index != Settings_count - 1){
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],7);
                     ++Settings_index;
-                    gotoxy(Settings_Col,15 + Settings_index) ;Color_Cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index) ;Color_Cout(Settings[Settings_index],3);
                 } else {
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],7);
                     Settings_index = 0;
-                    gotoxy(Settings_Col,15 + Settings_index); Color_Cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index); Color_Cout(Settings[Settings_index],3);
 
                 } break;
 
@@ -78,11 +79,11 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
                                 case 'W': case 'w':
                                     if(*Board_Size == max_Board_Size){
                                         *Board_Size = min_Board_Size;
-                                        gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         Color_Cout(*Board_Size, 5);
                                     } else {
                                         ++*Board_Size;
-                                        gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         Color_Cout(*Board_Size, 5);
                                     }
                                    break;
@@ -90,11 +91,11 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
                                 case 'S': case 's':
                                    if(*Board_Size == min_Board_Size){
                                        *Board_Size = max_Board_Size;
-                                       gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                        Color_Cout(*Board_Size, 5);
                                    } else {
                                        --*Board_Size;
-                                       gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                        Color_Cout(*Board_Size, 5);
                                    }
                                   break;
@@ -111,11 +112,11 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
                                 case 'W': case 'w':                                
                                     if(*Color_index == Color_Count-1){
                                         *Color_index = 0;
-                                        gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         Color_Cout(Colors[*Color_index],*Color_index);
                                     } else {
                                         ++*Color_index;
-                                        gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         Color_Cout(Colors[*Color_index],*Color_index);
                                     }
                                     break;
@@ -123,11 +124,11 @@ void Settings_Game(const int Center, int *Board_Size, int *Color_index){
                                 case 'S': case 's':
                                     if(*Color_index == 0){
                                        *Color_index = Color_Count - 1;
-                                       gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         Color_Cout(Colors[*Color_index],*Color_index); 
                                     } else {
                                        --*Color_index;
-                                       gotoxy(Settings_Col + 14, 15 + Settings_index);
+                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                        Color_Cout(Colors[*Color_index],*Color_index); 
                                     }
                                    break;

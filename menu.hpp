@@ -21,20 +21,21 @@ int Board_Color = 0;
  * 
  * */
 void Show_Menu(const int centerCol, const int centerRow){
+    const int game_name_hight = 15;// xaxi anvan barcrutyuny 
 
     const bool Sleep_Show = 0;
     Show_Game_Name(centerCol, Sleep_Show);
     int Menu_Col = centerCol - 3;
         for(int i=0; i<Menu_Count; ++i){
-       gotoxy(Menu_Col,15 + i); 
+       gotoxy(Menu_Col,game_name_hight + i); 
        Color_Cout(Menu[i],7); std::cout << "\n";
     }    
     gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],3); //arajin tary nshelu hamar
-    gotoxy(centerCol - 20, 15 + Menu_Count + 15);
+    gotoxy(centerCol - 20, game_name_hight + Menu_Count + game_name_hight);
     std::cout <<"Press 'W' for up Menu, or 'S' for down\n";
-    gotoxy(centerCol - 20, 15 + Menu_Count + 16);
+    gotoxy(centerCol - 20, game_name_hight + Menu_Count + 16);
     std::cout <<"Press 'Enter' to Enter\n";
-    gotoxy(centerCol - 20, 15 + Menu_Count + 17);
+    gotoxy(centerCol - 20, game_name_hight + Menu_Count + 17);
     std::cout <<"Press 'Esc' to Exit\n";
 
 
@@ -50,24 +51,24 @@ void Show_Menu(const int centerCol, const int centerRow){
         switch(key){
             case 'w': case 'W':// "W" sexmelis cucichy kbarcrana verev 
                 if(Menu_index != 0){
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],7); 
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],7); 
                     --Menu_index;
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],3);
                 } else {
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],7);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],7);
                     Menu_index = Menu_Count - 1;
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],3);
                 } break;
                 
             case 's': case 'S':// "S"sexmelis cucichy kijni nerqev
                 if(Menu_index != Menu_Count - 1){
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],7);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],7);
                     ++Menu_index;
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],3);
                 } else {
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],7);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],7);
                     Menu_index = 0;
-                    gotoxy(Menu_Col,15 + Menu_index); Color_Cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col,game_name_hight + Menu_index); Color_Cout(Menu[Menu_index],3);
                 } break;
     
             case 0x0A:// erb sexmenq enter kkatari hamapatasxan indexov "case"-y 

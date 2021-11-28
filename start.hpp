@@ -5,6 +5,7 @@
 #include <ctime>
 #include "input.hpp"
 #include "menu.hpp"
+#include "user.hpp"
 //head of functions for Start_Game
 void Show_Board(const int Center, int size, const int color);
 void step(int **Mat, int &i, int &j, int size,  char step_num, const int Board_Col, int &step);
