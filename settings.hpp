@@ -23,13 +23,17 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                        "Cyan   ", "Red    ", "Pink   ", "Yellow "};
    
     const int win_under_cordinat = centerCol + centerCol; //tpum e hushumnery
-    gotoxy(centerRow - 20, win_under_cordinat - 4);
+    gotoxy(centerRow - 15, game_name_hight + Settings_count + 5 );
     color_cout("Press 'W' for up Menu, or 'S' for down\n",3);
-    gotoxy(centerRow - 20, win_under_cordinat - 3);
+    gotoxy(centerRow - 15, game_name_hight + Settings_count + 6);
     color_cout("Press 'Enter' to Enter\n",3);
-    gotoxy(centerRow - 20, win_under_cordinat - 2);
+    gotoxy(centerRow - 15, game_name_hight + Settings_count + 7);
     color_cout("Press 'Esc' to Exit\n",3);
-    
+   
+
+
+
+
     for(int i = 0; i < Settings_count; ++i){
         gotoxy(Settings_Col,game_name_hight + i);
         color_cout(Settings[i],7); std::cout<<"\n";

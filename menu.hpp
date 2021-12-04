@@ -38,11 +38,11 @@ void Show_Menu(const int centerRow, const int centerCol){
     }    
     gotoxy(Menu_Col,15 + Menu_index); color_cout(Menu[Menu_index],3); //arajin tary nshelu hamar
     
-    gotoxy(centerRow - 20, win_under_cordinat - 4);
+    gotoxy(centerRow - 15, game_name_hight + Menu_Count + 5 );
     color_cout("Press 'W' for up Menu, or 'S' for down\n",3);
-    gotoxy(centerRow - 20, win_under_cordinat - 3);
+    gotoxy(centerRow - 15, game_name_hight + Menu_Count + 6);
     color_cout("Press 'Enter' to Enter\n",3);
-    gotoxy(centerRow - 20, win_under_cordinat - 2);
+    gotoxy(centerRow - 15, game_name_hight + Menu_Count + 7);
     color_cout("Press 'Esc' to Exit\n",3);
 
     for(char key = -1; key != 27; ){

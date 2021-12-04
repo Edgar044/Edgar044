@@ -13,21 +13,23 @@ void write_File(User* topUser, int topUsers_count, std::string way);
 void read_File(User* topUser, int topUsers_count, std::string way);
 void chenge_user(User &first, User &second);
 std::string file_way(const int level);
-void show_table(const int centerRow, const int centerCol, User* printUser, const int users_count);
+void show_table(const int centerRow, const int name_hight, User* printUser, const int users_count);
 
 void Records_Game(const int centerRow, const int centerCol, User currentUser, const int topUsers_count){
     const bool Sleep_Show = 0;
     Show_Game_Name(centerRow, Sleep_Show);
+    const int game_name_hight = 9;
     
     User topUsers[topUsers_count]; 
     const int min_level = 1;
     const int max_level = 4;
     int level = 1;
     
-    gotoxy(centerRow - 10, centerCol - 13);
-    std::cout<<"Level: "<<level << "\n";
+    gotoxy(centerRow - 10, game_name_hight + 3);
+    std::cout<<"Level:";
+    color_cout(level, 4);
     read_File(topUsers, topUsers_count,file_way(level));
-    show_table(centerRow, centerCol, topUsers, topUsers_count); 
+    show_table(centerRow, game_name_hight, topUsers, topUsers_count); 
     
     for(char key = -1; key != 27 ; ){
         cbreak();
@@ -36,35 +38,39 @@ void Records_Game(const int centerRow, const int centerCol, User currentUser, co
             case 'a': case 'A': case 4:
                 if(level == min_level){
                     level = max_level;
-                    gotoxy(centerRow - 10, centerCol - 13);
-                    std::cout<<"Level: "<<level << "\n";
+                    gotoxy(centerRow - 10, game_name_hight + 3);
+                    std::cout<<"Level:";
+                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerRow, centerCol, topUsers, topUsers_count);
+                    show_table(centerRow, game_name_hight, topUsers, topUsers_count);
                 } else {
                     --level;
-                    gotoxy(centerRow - 10, centerCol - 13);
-                    std::cout<<"Level: "<<level << "\n";
+                    gotoxy(centerRow - 10, game_name_hight + 3);
+                    std::cout<<"Level:";
+                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerRow, centerCol, topUsers, topUsers_count); 
+                    show_table(centerRow, game_name_hight, topUsers, topUsers_count); 
                 }
                  break;
             case 'd': case 'D': case 6:
                 if(level == max_level){
                     level = min_level;
-                    gotoxy(centerRow - 10, centerCol - 13);
-                    std::cout<<"Level: "<<level<<"\n";
+                    gotoxy(centerRow - 10, game_name_hight + 3);
+                    std::cout<<"Level:";
+                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerRow, centerCol, topUsers, topUsers_count); 
+                    show_table(centerRow, game_name_hight, topUsers, topUsers_count); 
                 } else {
                     ++level;
-                    gotoxy(centerRow - 10, centerCol - 13);
-                    std::cout<<"Level: "<<level<<"\n";
+                    gotoxy(centerRow - 10, game_name_hight + 3);
+                    std::cout<<"Level:";
+                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerRow, centerCol, topUsers, topUsers_count);               
+                    show_table(centerRow, game_name_hight, topUsers, topUsers_count);               
                 }
                  break;
         }
@@ -136,9 +142,9 @@ void campare_results(User currentUser,const int topUsers_count, const int level)
 }
 
 
-void show_table(const int centerRow, const int centerCol, User* printUser, const int users_count){
+void show_table(const int centerRow, const int name_hight, User* printUser, const int users_count){
     int X_table = centerRow - 20;
-    int Y_table = centerCol - 10;
+    int Y_table = name_hight + 5;
     gotoxy(X_table + 3, Y_table); std::cout<<"Name  |"<< "Step Count |"<<"Record Time |";
     std::cout<<"\033[J";//jmjum e nerqevi hatvacy
     int row_color = 4;

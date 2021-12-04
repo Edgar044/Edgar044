@@ -14,29 +14,28 @@ bool chek_win(int **Mat, const int size);
 int secunds_timer(int start_time);
 //the Start main function
 void Start_Game(const int centerRow, const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
-    //grancum enq pleyeri anuny 
-    //User currentUser;//stexcvum e nerka pahin xaxacoxi classy
+    
     const bool Sleep_Show = 0;
     const int game_name_hight = 15;
     const int game_level = board_size - 1;// xaxataxtaki chaperic imanum enq xaxi makardaky 
     Show_Game_Name(centerRow, Sleep_Show);
+    
+    std::string nameTemp;
     gotoxy(centerRow - 12, game_name_hight);
     std::cout<<"Enter name: \n";
-    std::string nameTemp;
     gotoxy(centerRow, game_name_hight);
     normal();
     std::cin >> nameTemp;
     currentUser.Set_name(nameTemp);
     
-    
-   //sksum e xaxy
+    //sksum e xaxy
     Show_Game_Name(centerRow, Sleep_Show);
     int num=0;
     int** matrix = new int*[board_size];
     for(int i = 0; i < board_size; ++i){
         matrix[i] = new int[board_size];
     }
-           for(int i=0; i<board_size; ++i){
+    for(int i=0; i<board_size; ++i){
         for(int j=0; j<board_size; ++j){
           matrix[i][j] = ++num;
         }
@@ -44,7 +43,7 @@ void Start_Game(const int centerRow, const int centerCol, const int board_size,c
         
     Show_Board(centerRow, board_size, board_color);
     const int Board_Col = centerRow - (board_size * 4)/2; //vorpisi tpi mejtexic
-    const int Real_Size = board_size * 2 + 1; 
+    const int real_size = board_size * 2 + 1; 
     int index_i = board_size - 1;                         //matrici skzbnakan i indexy
     int index_j = board_size - 1;                         //matrici skzbnakan j indexy
     int ptr_x = Board_Col + index_i * 4;                  //cucichi
@@ -99,13 +98,13 @@ void Start_Game(const int centerRow, const int centerCol, const int board_size,c
         color_cout(step_count, board_color); // tpum e qayleri qanaky
         
 
-        gotoxy(centerRow - 20, game_name_hight + Real_Size); //pleyeri anuny nerqevy aj ankyunum 
+        gotoxy(centerRow - 20, game_name_hight + real_size); //pleyeri anuny nerqevy aj ankyunum 
         std::cout<<"Player Name: "; 
         color_cout(currentUser.Get_name(), board_color);
 
-        gotoxy(centerRow + 5, game_name_hight + Real_Size);
+        gotoxy(centerRow + 5, game_name_hight + real_size);
         std::cout << "Level: ";  color_cout(game_level, board_color);
-
+        
 
        //diliting matrix
         if(key_1 == 'q' ||  win == 1){  
@@ -115,13 +114,21 @@ void Start_Game(const int centerRow, const int centerCol, const int board_size,c
             delete[] matrix;
             break;
         }
+        gotoxy(centerRow - 20, game_name_hight + real_size + 5);
+        color_cout("Press 'Esc' for back to main menu\n",3);
+        gotoxy(centerRow - 20, game_name_hight + real_size + 6);
+        color_cout("Press 'R' to reset\n",3);
+        //gotoxy(centerRow - 20, win_under_cordinat - 2);
+        //color_cout("Press 'Esc' to Exit\n",3);
     } 
     if(win){
       gotoxy(Board_Col + 1 + (board_size-1)*4, 15 + (board_size-1)*2);
       std::cout<<std::setw(2)<<board_size*board_size;
       for(char key_2 = -1; ; ){
             int color = rand() % 8;
-            gotoxy(centerRow - 3, Real_Size + game_name_hight + 3); color_cout("YOU WIN\n",color);
+            gotoxy(centerRow - 3, real_size + game_name_hight + 3); 
+            color_cout("YOU WIN\n",color);
+            usleep(10000);
             cbreak();
             key_2 = keypress();
             //normal();
