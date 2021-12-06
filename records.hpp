@@ -8,7 +8,6 @@
 #include "user.hpp"
 
 
-
 void write_File(User* topUser, int topUsers_count, std::string way);
 void read_File(User* topUser, int topUsers_count, std::string way);
 void chenge_user(User &first, User &second);
@@ -35,7 +34,7 @@ void Records_Game(const int centerRow, const int centerCol, User currentUser, co
         cbreak();
         key = keypress();
         switch(key){
-            case 'a': case 'A': case 4:
+            case 'a': case 'A': case 4: 
                 if(level == min_level){
                     level = max_level;
                     gotoxy(centerRow - 10, game_name_hight + 3);
@@ -74,13 +73,9 @@ void Records_Game(const int centerRow, const int centerCol, User currentUser, co
                 }
                  break;
         }
-        
     }
-  
     std::cout<<"\n";
 }
-
-
 
 void read_File(User* topUser, int topUsers_count, std::string way){
     std::ifstream readFile(way);

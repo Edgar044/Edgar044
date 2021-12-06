@@ -8,35 +8,29 @@
 #include "input.hpp"
 #include "records.hpp"
 
-const int game_name_hight = 15;
-const int Settings_count = 3;
-int Settings_index = 0;
-
 void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, int *Color_index){
-    Settings_index = 0; //vorpisi misht sksi arajin toxic
     const bool Sleep_Show = 0;
     Show_Game_Name(centerRow, Sleep_Show);
+    const int game_name_hight = 15;
+    int Settings_index = 0;
     int Settings_Col = centerRow - 3;    
-    std::string Settings[Settings_count]={"Board Size  _", "Board Color _","Users"};
-    const int Color_Count = 8;
+    constexpr int Settings_count = 3;
+    std::string Settings[Settings_count] = {"Board Size  _", "Board Color _","Users"};
+    constexpr int Color_Count = 8;
     std::string Colors[Color_Count] = {"White  ", "Gray   ", "Blue   ", "Green  ",
                                        "Cyan   ", "Red    ", "Pink   ", "Yellow "};
    
     const int win_under_cordinat = centerCol + centerCol; //tpum e hushumnery
     gotoxy(centerRow - 15, game_name_hight + Settings_count + 5 );
-    color_cout("Press 'W' for up Menu, or 'S' for down\n",3);
+    color_cout("Press 'W' for up Menu, or 'S' for down\n", 3);
     gotoxy(centerRow - 15, game_name_hight + Settings_count + 6);
-    color_cout("Press 'Enter' to Enter\n",3);
+    color_cout("Press 'Enter' to Enter\n", 3);
     gotoxy(centerRow - 15, game_name_hight + Settings_count + 7);
-    color_cout("Press 'Esc' to Exit\n",3);
+    color_cout("Press 'Esc' to Exit\n", 3);
    
-
-
-
-
     for(int i = 0; i < Settings_count; ++i){
         gotoxy(Settings_Col,game_name_hight + i);
-        color_cout(Settings[i],7); std::cout<<"\n";
+        color_cout(Settings[i], 7); std::cout << "\n";
     }
     gotoxy(Settings_Col, game_name_hight + Settings_index); // arajbayin yntrvac toxy
     color_cout(Settings[Settings_index],3);
@@ -51,38 +45,40 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
     for(char key_2 = -1; key_2 != 27; ) {
         cbreak();
         key_2 = keypress();
-
-        switch(key_2){
-    
+        switch(key_2){    
             case 'w': case 'W': 
                 if(Settings_index != 0){
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],7); 
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],7); 
                     --Settings_index;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],3);
-        
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],3);
                 } else {
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],7);
                     Settings_index = Settings_count - 1;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],3);
-                
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],3);
                 } break;
             
             case 's': case 'S':
                 if(Settings_index != Settings_count - 1){
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],7);
                     ++Settings_index;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index) ;color_cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],3);
                 } else {
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],7);
                     Settings_index = 0;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index); color_cout(Settings[Settings_index],3);
-
+                    gotoxy(Settings_Col,game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index],3);
                 } break;
 
             case 0x0A:// erb sexme nq enter kkatari hamapatasxan indexov "case"-y 
-                int min_Board_Size = 3;
-                int max_Board_Size = 6;
-                                
+                constexpr int min_Board_Size = 3;
+                constexpr int max_Board_Size = 6;
                 switch(Settings_index){                    
                     case 0:
                         for(char key = -1; key != 10;  ){
@@ -99,24 +95,24 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                         color_cout(*Board_Size, 5);
                                     }
-                                   break;
-                                
+                                    break;
                                 case 'S': case 's':
-                                   if(*Board_Size == min_Board_Size){
-                                       *Board_Size = max_Board_Size;
-                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
+                                    if(*Board_Size == min_Board_Size){
+                                        *Board_Size = max_Board_Size;
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
+                                        color_cout(*Board_Size, 5);
+                                    } else {
+                                        --*Board_Size;
+                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
                                        color_cout(*Board_Size, 5);
-                                   } else {
-                                       --*Board_Size;
-                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                       color_cout(*Board_Size, 5);
-                                   }
-                                  break;
+                                    }
+                                    break;
+                                    
                                 case 10:
-                                  std::cout<<"\n\n";
-                                  break;
+                                    std::cout<<"\n\n";
+                                    break;
                             }                       
-                     } break;
+                        } break;
                     case 1:
                         for(char key = -1; key != 10;  ){  
                             cbreak();
@@ -145,17 +141,16 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                        color_cout(Colors[*Color_index],*Color_index); 
                                     }
                                    break;
-                        
                             }
-                        }  break; 
+                        }  break;
 
-                 case 2:
+                    case 2:
                         break;
-                          
+                    
                 } 
         }
     }
-normal();
+
 }
 
 #endif //SETTINGS_H
