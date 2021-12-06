@@ -3,9 +3,11 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include "menu.hpp"
-#include "start.hpp"
+//#include "start.hpp"
 #include "input.hpp"
-#include "user.hpp"
+//#include "user.hpp"
+//#include "settings.hpp"
+//#include "records.hpp"
 
 void userWinSize(int* winRow, int* winCol);
 

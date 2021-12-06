@@ -1,7 +1,7 @@
 #include <iostream>
-#include "user.hpp"
 #include <string>
-                  
+#include "user.hpp"
+  
 User::User(){        //defolt
     name = "Name";
     step_count = 99999;
