@@ -9,4 +9,6 @@
 
  This is my firs projekt Sliding Puzzle.
  
+ If you have any suggestions or comments, please send them to the following email: edgar.muradyan98@gmail.com
+ 
 
