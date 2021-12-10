@@ -2,9 +2,9 @@
 #include <iostream>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include "menu.hpp"
+#include "../Headers/menu.hpp"
 //#include "start.hpp"
-#include "input.hpp"
+#include "../Headers/input.hpp"
 //#include "user.hpp"
 //#include "settings.hpp"
 //#include "records.hpp"

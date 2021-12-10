@@ -2,9 +2,9 @@
 #include <ctime>
 #include <stdlib.h>
 #include <unistd.h>
-#include "input.hpp"
-#include "records.hpp"
-#include "settings.hpp"
+#include "../Headers/input.hpp"
+#include "../Headers/records.hpp"
+#include "../Headers/settings.hpp"
 
 void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, int *Color_index){
     const bool Sleep_Show = 0;
@@ -31,13 +31,13 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
         color_cout(Settings[i], 7); std::cout << "\n";
     }
     gotoxy(Settings_Col, game_name_hight + Settings_index); // arajbayin yntrvac toxy
-    color_cout(Settings[Settings_index],3);
+    color_cout(Settings[Settings_index], 3);
 
     gotoxy(Settings_Col + 14, game_name_hight + Settings_index);// yntrvac chapi skzbnarjeqavorum
     color_cout(*Board_Size, 5);
     
     gotoxy(Settings_Col + 14, game_name_hight + 1 + Settings_index);
-    color_cout(Colors[*Color_index],*Color_index);
+    color_cout(Colors[*Color_index], *Color_index);
     
     int Size;
     for(char key_2 = -1; key_2 != 27; ) {
@@ -46,32 +46,32 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
         switch(key_2){    
             case 'w': case 'W': 
                 if(Settings_index != 0){
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],7); 
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 7); 
                     --Settings_index;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 3);
                 } else {
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 7);
                     Settings_index = Settings_count - 1;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 3);
                 } break;
             
             case 's': case 'S':
                 if(Settings_index != Settings_count - 1){
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 7);
                     ++Settings_index;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 3);
                 } else {
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],7);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 7);
                     Settings_index = 0;
-                    gotoxy(Settings_Col,game_name_hight + Settings_index);
-                    color_cout(Settings[Settings_index],3);
+                    gotoxy(Settings_Col, game_name_hight + Settings_index);
+                    color_cout(Settings[Settings_index], 3);
                 } break;
 
             case 0x0A:// erb sexme nq enter kkatari hamapatasxan indexov "case"-y 
@@ -87,22 +87,22 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                     if(*Board_Size == max_Board_Size){
                                         *Board_Size = min_Board_Size;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size, 5);
+                                        color_cout(*Board_Size - 2, 5);
                                     } else {
                                         ++*Board_Size;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size, 5);
+                                        color_cout(*Board_Size - 2, 5);
                                     }
                                     break;
                                 case 'S': case 's':
                                     if(*Board_Size == min_Board_Size){
                                         *Board_Size = max_Board_Size;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size, 5);
+                                        color_cout(*Board_Size - 2, 5);
                                     } else {
                                         --*Board_Size;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                       color_cout(*Board_Size, 5);
+                                       color_cout(*Board_Size - 2, 5);
                                     }
                                     break;
                                     
@@ -120,11 +120,11 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                     if(*Color_index == Color_Count-1){
                                         *Color_index = 0;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index],*Color_index);
+                                        color_cout(Colors[*Color_index], *Color_index);
                                     } else {
                                         ++*Color_index;
                                         gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index],*Color_index);
+                                        color_cout(Colors[*Color_index], *Color_index);
                                     }
                                     break;
                        
@@ -132,11 +132,11 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                                     if(*Color_index == 0){
                                        *Color_index = Color_Count - 1;
                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index],*Color_index); 
+                                        color_cout(Colors[*Color_index], *Color_index); 
                                     } else {
                                        --*Color_index;
                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                       color_cout(Colors[*Color_index],*Color_index); 
+                                       color_cout(Colors[*Color_index], *Color_index); 
                                     }
                                    break;
                             }

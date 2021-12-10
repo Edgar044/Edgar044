@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include "user.hpp"
+#include "../Headers/user.hpp"
   
 User::User(){        //defolt
     name = "Name";
-    step_count = 99999;
-    record_time = 99999;
+    step_count = 0;
+    record_time = 0;
 }
 
 User::User(std::string name){ //constructor

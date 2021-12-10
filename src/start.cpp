@@ -1,17 +1,17 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include "input.hpp"
-#include "menu.hpp"
-#include "records.hpp"
-#include "start.hpp"
 #include <unistd.h>
+#include "../Headers/input.hpp"
+#include "../Headers/menu.hpp"
+#include "../Headers/records.hpp"
+#include "../Headers/start.hpp"
 
 //the Start main function
 void Start_Game(const int centerRow, const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
     const bool Sleep_Show = 0;
     constexpr int game_name_hight = 15;
-    const int game_level = board_size - 1; // xaxataxtaki chaperic imanum enq xaxi makardaky 
+    const int game_level = board_size - 2;// xaxataxtaki chaperic imanum enq xaxi makardaky 
     Show_Game_Name(centerRow, Sleep_Show);
     
     std::string nameTemp;
@@ -112,7 +112,7 @@ void Start_Game(const int centerRow, const int centerCol, const int board_size,c
     
     if(win){
       gotoxy(Board_Col + 1 + (board_size - 1) * 4, 15 + (board_size - 1) * 2);
-      std::cout<<std::setw(2)<<board_size*board_size;
+      std::cout<<std::setw(2) << board_size * board_size;
       for(char key_2 = -1; ; ){
             int color = rand() % 8;
             gotoxy(centerRow - 3, real_size + game_name_hight + 3); 

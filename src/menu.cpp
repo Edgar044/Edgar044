@@ -1,11 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
-#include "menu.hpp"
-#include "input.hpp"
-#include "start.hpp"
-#include "user.hpp"
-#include "settings.hpp"
-#include "records.hpp"
+#include "../Headers/menu.hpp"
+#include "../Headers/input.hpp"
+#include "../Headers/start.hpp"
+#include "../Headers/user.hpp"
+#include "../Headers/settings.hpp"
+#include "../Headers/records.hpp"
 
 //constexpr int Menu_Count = 5;
 //int Menu_index = 0;
@@ -24,8 +24,8 @@ void Show_Menu(const int centerRow, const int centerCol){
     constexpr int Menu_Count = 5;
     int Menu_index = 0;
     std::string Menu[Menu_Count] = {"Start", "Settings", "Records", "About", "Exit"};
-    int board_size = 3;
-    int Board_Color = 0;
+    static int board_size = 3;
+    static int Board_Color = 4;
     constexpr int game_name_hight = 15;// xaxi anvan barcrutyuny 
     const bool Sleep_Show = 0;
     Show_Game_Name(centerRow, Sleep_Show);
@@ -53,31 +53,31 @@ void Show_Menu(const int centerRow, const int centerCol){
         switch(key){
             case 'w': case 'W':// "W" sexmelis cucichy kbarcrana verev 
                 if(Menu_index != 0){
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],menu_color_value); 
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
+                    color_cout(Menu[Menu_index], menu_color_value); 
                     --Menu_index;
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
+                    color_cout(Menu[Menu_index], 3);
                 } else {
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],menu_color_value);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
+                    color_cout(Menu[Menu_index], menu_color_value);
                     Menu_index = Menu_Count - 1;
                     gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],3);
+                    color_cout(Menu[Menu_index], 3);
                 } break;
                 
             case 's': case 'S':// "S"sexmelis cucichy kijni nerqev
                 if(Menu_index != Menu_Count - 1){
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],menu_color_value);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
+                    color_cout(Menu[Menu_index], menu_color_value);
                     ++Menu_index;
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
-                    color_cout(Menu[Menu_index],3);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
+                    color_cout(Menu[Menu_index], 3);
                 } else {
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
                     color_cout(Menu[Menu_index],menu_color_value);
                     Menu_index = 0;
-                    gotoxy(Menu_Col,game_name_hight + Menu_index);
+                    gotoxy(Menu_Col, game_name_hight + Menu_index);
                     color_cout(Menu[Menu_index],3);
                 } break;
     

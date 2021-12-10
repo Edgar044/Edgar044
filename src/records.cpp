@@ -3,8 +3,8 @@
 #include <stdlib.h>
 //#include "menu.hpp"
 //#include "start.hpp"
-#include "input.hpp"
-#include "records.hpp"
+#include "../Headers/input.hpp"
+#include "../Headers/records.hpp"
 
 
 void Records_Game(const int centerRow, const int centerCol, User currentUser, const int topUsers_count){
@@ -120,13 +120,14 @@ std::string file_way(const int level){
 void campare_results(User currentUser,const int topUsers_count, const int level){
    User topUser[topUsers_count];
    read_File(topUser, topUsers_count, file_way(level));
+   
    for(int i = 0; i < topUsers_count; ++i){
        if(currentUser.Get_record_time() < topUser[i].Get_record_time()){
            chenge_user(currentUser, topUser[i]);
            write_File(topUser,topUsers_count, file_way(level)); 
-       } 
-
+       }
    }
+
 }
 
 
@@ -136,18 +137,19 @@ void show_table(const int centerRow, const int name_hight, User* printUser, cons
     gotoxy(X_table + 3, Y_table); std::cout<<"Name  |"<< "Step Count |"<<"Record Time |";
     std::cout<<"\033[J";//jmjum e nerqevi hatvacy
     int row_color = 4;
+    
+    for(int i=0; i< users_count; ++i){
+        gotoxy(X_table, Y_table + i + 1);
+        std::cout << i + 1 <<".";
+    }
+    
     for(int i = 0; i<users_count; ++i){
         if(printUser[i].Get_record_time() >= printUser[users_count - 1].Get_record_time()){
             std::cout<<"\n";   break;
         }
-        gotoxy(X_table, Y_table + i + 1);
-        std::cout << i + 1 <<".";
         gotoxy(X_table + 3, Y_table + i + 1); color_cout(printUser[i].Get_name(), row_color);
         gotoxy(X_table + 14, Y_table + i + 1); color_cout(printUser[i].Get_step_count(), row_color);
-        //gotoxy(X_table + 27, Y_table + i + 1); color_cout(printUser[i].Get_record_time(), row_color) ;
         print_time(printUser[i].Get_record_time(), row_color, X_table + 23, Y_table + i + 1);
         std::cout<<"\n";
-
     }
-
 }
