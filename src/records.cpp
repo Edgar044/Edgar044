@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <stdlib.h>
+//#include <stdlib.h>
 //#include "menu.hpp"
 //#include "start.hpp"
 #include "../Headers/input.hpp"

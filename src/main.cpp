@@ -3,11 +3,8 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include "../Headers/menu.hpp"
-//#include "start.hpp"
 #include "../Headers/input.hpp"
-//#include "user.hpp"
-//#include "settings.hpp"
-//#include "records.hpp"
+
 
 void userWinSize(int* winRow, int* winCol);
 
@@ -27,11 +24,8 @@ int main(){
     return  0;
 }
 
+void userWinSize(int* winRow, int* winCol){
 
-
-
-void userWinSize(int* winRow, int* winCol)
-{
         struct winsize w;
            ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
            *winRow = w.ws_row;

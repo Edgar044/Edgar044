@@ -1,12 +1,13 @@
 #include <iostream>
-#include <ctime>
-#include <stdlib.h>
-#include <unistd.h>
+//#include <ctime>
+//#include <stdlib.h>
+//#include <unistd.h>
 #include "../Headers/input.hpp"
 #include "../Headers/records.hpp"
 #include "../Headers/settings.hpp"
 
-void select_lavel()
+void select_level(int *Board_Size, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);
+void select_color(std::string Colors[], const int Color_Count, int *Color_index, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);
 
 void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, int *Color_index){
     const bool Sleep_Show = 0;
@@ -32,12 +33,18 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
         gotoxy(Settings_Col,game_name_hight + i);
         color_cout(Settings[i], 7); std::cout << "\n";
     }
-    gotoxy(Settings_Col, game_name_hight + Settings_index); // arajbayin yntrvac toxy
+    gotoxy(Settings_Col, game_name_hight + Settings_index); // arajnayin yntrvac toxy
     color_cout(Settings[Settings_index], 3);
-
-    gotoxy(Settings_Col + 14, game_name_hight + Settings_index);// yntrvac chapi skzbnarjeqavorum
-    color_cout(*Board_Size - 2, 5);
     
+    // yntrvac chapi skzbnarjeqavorum
+    gotoxy(Settings_Col + 13, game_name_hight + Settings_index);
+    color_cout(*Board_Size, 5);
+    gotoxy(Settings_Col + 16, game_name_hight + Settings_index);
+    color_cout("X", 5);
+    gotoxy(Settings_Col + 17, game_name_hight + Settings_index);
+    color_cout(*Board_Size, 5);
+
+    //yntrvac guyni skzbnarjeqavorum
     gotoxy(Settings_Col + 14, game_name_hight + 1 + Settings_index);
     color_cout(Colors[*Color_index], *Color_index);
     
@@ -76,79 +83,103 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
                     color_cout(Settings[Settings_index], 3);
                 } break;
 
-            case 0x0A:// erb sexme nq enter kkatari hamapatasxan indexov "case"-y 
-                constexpr int min_Board_Size = 3;
-                constexpr int max_Board_Size = 6;
-                switch(Settings_index){                    
-                    case 0:
-                        for(char key = -1; key != 10;  ){
-                            cbreak();
-                            key = keypress();
-                            switch(key){
-                                case 'W': case 'w':
-                                    if(*Board_Size == max_Board_Size){
-                                        *Board_Size = min_Board_Size;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size - 2, 5);
-                                    } else {
-                                        ++*Board_Size;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size - 2, 5);
-                                    }
-                                    break;
-                                case 'S': case 's':
-                                    if(*Board_Size == min_Board_Size){
-                                        *Board_Size = max_Board_Size;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(*Board_Size - 2, 5);
-                                    } else {
-                                        --*Board_Size;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                       color_cout(*Board_Size - 2, 5);
-                                    }
-                                    break;
-                                    
-                                case 10:
-                                    std::cout<<"\n\n";
-                                    break;
-                            }                       
-                        } break;
-                    case 1:
-                        for(char key = -1; key != 10;  ){  
-                            cbreak();
-                            key = keypress();
-                            switch(key){
-                                case 'W': case 'w':                                
-                                    if(*Color_index == Color_Count-1){
-                                        *Color_index = 0;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index], *Color_index);
-                                    } else {
-                                        ++*Color_index;
-                                        gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index], *Color_index);
-                                    }
-                                    break;
-                       
-                                case 'S': case 's':
-                                    if(*Color_index == 0){
-                                       *Color_index = Color_Count - 1;
-                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                        color_cout(Colors[*Color_index], *Color_index); 
-                                    } else {
-                                       --*Color_index;
-                                       gotoxy(Settings_Col + 14, game_name_hight + Settings_index);
-                                       color_cout(Colors[*Color_index], *Color_index); 
-                                    }
-                                   break;
-                            }
-                        }  break;
+            case 'a': case 'A':
+                if (Settings_index == 0){
+                    select_level(Board_Size, Settings_Col, game_name_hight, Settings_index, key_2);
+                } else if (Settings_index == 1) {
+                    select_color(Colors, Color_Count, Color_index, Settings_Col, game_name_hight, Settings_index, key_2);
+                }
+                break;
 
-                    case 2:
-                        break;
-                    
-                } 
+            case 'd': case 'D':
+                if (Settings_index == 0){
+                    select_level(Board_Size, Settings_Col, game_name_hight, Settings_index, key_2); 
+                } else if (Settings_index == 1) {
+                    select_color(Colors, Color_Count, Color_index, Settings_Col, game_name_hight, Settings_index, key_2);
+                }
+                break;       
         }
     }
-
 }
+
+void select_level(int *Board_Size, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek){
+    constexpr int min_Board_Size = 3;
+    constexpr int max_Board_Size = 6;
+
+    if (chek == 'a' || chek == 'A'){
+        if(*Board_Size == min_Board_Size){
+            *Board_Size = max_Board_Size;
+            gotoxy(Settings_Col + 13, Settings_hight + Settings_index);
+            //color_cout(*Board_Size - 2, 5);
+            color_cout(*Board_Size, 5);
+            gotoxy(Settings_Col + 16, Settings_hight + Settings_index);
+            color_cout("X", 5);
+            gotoxy(Settings_Col + 17, Settings_hight + Settings_index);
+            color_cout(*Board_Size, 5);
+        } else {
+            --*Board_Size;
+            gotoxy(Settings_Col + 13, Settings_hight + Settings_index);
+            //color_cout(*Board_Size - 2, 5);
+            color_cout(*Board_Size, 5);
+            gotoxy(Settings_Col + 16, Settings_hight + Settings_index);
+            color_cout("X", 5);
+            gotoxy(Settings_Col + 17, Settings_hight + Settings_index);
+            color_cout(*Board_Size, 5);
+        }
+        return;
+    } 
+    
+    if (chek == 'd' || chek == 'D'){
+       if(*Board_Size == max_Board_Size){
+            *Board_Size = min_Board_Size;
+            gotoxy(Settings_Col + 13, Settings_hight + Settings_index);
+            //color_cout(*Board_Size - 2, 5); 
+           color_cout(*Board_Size, 5);
+            gotoxy(Settings_Col + 16, Settings_hight + Settings_index);
+            color_cout("X", 5);
+            gotoxy(Settings_Col + 17, Settings_hight + Settings_index);
+            color_cout(*Board_Size, 5);
+        } else {
+            ++*Board_Size;
+            gotoxy(Settings_Col + 13, Settings_hight + Settings_index);
+            //color_cout(*Board_Size - 2, 5);
+             color_cout(*Board_Size, 5);
+            gotoxy(Settings_Col + 16, Settings_hight + Settings_index);
+            color_cout("X", 5);
+            gotoxy(Settings_Col + 17, Settings_hight + Settings_index);
+            color_cout(*Board_Size, 5);
+        }
+        return;
+    }
+}
+
+void select_color(std::string Colors[], const int Color_Count, int *Color_index, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek){
+     
+    if (chek == 'a' || chek == 'A'){
+        if(*Color_index == 0){
+            *Color_index = Color_Count - 1;
+            gotoxy(Settings_Col + 14, Settings_hight + Settings_index);
+            color_cout(Colors[*Color_index], *Color_index); 
+        } else {
+            --*Color_index;
+            gotoxy(Settings_Col + 14, Settings_hight + Settings_index);
+            color_cout(Colors[*Color_index], *Color_index); 
+        }
+        return;
+    } 
+    
+    if (chek == 'd' || chek == 'D'){
+        if(*Color_index == Color_Count-1){
+            *Color_index = 0;
+            gotoxy(Settings_Col + 14, Settings_hight + Settings_index);
+            color_cout(Colors[*Color_index], *Color_index);
+        } else {
+            ++*Color_index;
+            gotoxy(Settings_Col + 14, Settings_hight + Settings_index);
+            color_cout(Colors[*Color_index], *Color_index);
+        }
+        
+        return;
+    }
+}
+
