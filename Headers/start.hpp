@@ -8,7 +8,7 @@ bool chek_win(int **Mat, const int size);
 int secunds_timer(int start_time);
 
 //the Start main function
-void Start_Game(const int centerRow, const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count);
+void Start_Game(const int centerRow, const int board_size,const int board_color, User &currentUser, const int topUsers_count);
 
 
 #endif //START_H

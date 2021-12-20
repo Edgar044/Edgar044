@@ -6,6 +6,8 @@
 #include "../Headers/records.hpp"
 #include "../Headers/settings.hpp"
 
+void select_lavel()
+
 void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, int *Color_index){
     const bool Sleep_Show = 0;
     Show_Game_Name(centerRow, Sleep_Show);
@@ -13,7 +15,7 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
     int Settings_index = 0;
     int Settings_Col = centerRow - 3;    
     constexpr int Settings_count = 3;
-    std::string Settings[Settings_count] = {"Board Size  _", "Board Color _","Users"};
+    std::string Settings[Settings_count] = {"Game level  _", "Board Color _","Users"};
     constexpr int Color_Count = 8;
     std::string Colors[Color_Count] = {"White  ", "Gray   ", "Blue   ", "Green  ",
                                        "Cyan   ", "Red    ", "Pink   ", "Yellow "};
@@ -34,7 +36,7 @@ void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, in
     color_cout(Settings[Settings_index], 3);
 
     gotoxy(Settings_Col + 14, game_name_hight + Settings_index);// yntrvac chapi skzbnarjeqavorum
-    color_cout(*Board_Size, 5);
+    color_cout(*Board_Size - 2, 5);
     
     gotoxy(Settings_Col + 14, game_name_hight + 1 + Settings_index);
     color_cout(Colors[*Color_index], *Color_index);

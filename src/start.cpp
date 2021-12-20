@@ -8,8 +8,8 @@
 #include "../Headers/start.hpp"
 
 //the Start main function
-void Start_Game(const int centerRow, const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
-    const bool Sleep_Show = 0;
+void Start_Game(const int centerRow, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
+    constexpr bool Sleep_Show = 0;
     constexpr int game_name_hight = 15;
     const int game_level = board_size - 2;// xaxataxtaki chaperic imanum enq xaxi makardaky 
     Show_Game_Name(centerRow, Sleep_Show);
