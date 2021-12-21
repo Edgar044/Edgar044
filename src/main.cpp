@@ -5,7 +5,6 @@
 #include "../Headers/menu.hpp"
 #include "../Headers/input.hpp"
 
-
 void userWinSize(int* winRow, int* winCol);
 
 int main(){
@@ -17,7 +16,7 @@ int main(){
     const int centerRow = userRowSize/2;
     const bool sleep_show = 1;
     Show_Game_Name(centerCol, sleep_show);
-    Show_Menu(centerCol, centerRow);
+    Show_Menu(centerCol);
 
     gotoxy(1,35);
     std::cout<<"\n\n";
@@ -25,7 +24,6 @@ int main(){
 }
 
 void userWinSize(int* winRow, int* winCol){
-
         struct winsize w;
            ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
            *winRow = w.ws_row;

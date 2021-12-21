@@ -9,25 +9,25 @@
 void select_level(int *Board_Size, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);
 void select_color(std::string Colors[], const int Color_Count, int *Color_index, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);
 
-void Settings_Game(const int centerRow, const int centerCol, int *Board_Size, int *Color_index){
+void Settings_Game(const int centerCol, int *Board_Size, int *Color_index){
     const bool Sleep_Show = 0;
-    Show_Game_Name(centerRow, Sleep_Show);
+    Show_Game_Name(centerCol, Sleep_Show);
     const int game_name_hight = 15;
     int Settings_index = 0;
-    int Settings_Col = centerRow - 3;    
+    int Settings_Col = centerCol - 3;    
     constexpr int Settings_count = 3;
     std::string Settings[Settings_count] = {"Game level  _", "Board Color _","Users"};
     constexpr int Color_Count = 8;
     std::string Colors[Color_Count] = {"White  ", "Gray   ", "Blue   ", "Green  ",
                                        "Cyan   ", "Red    ", "Pink   ", "Yellow "};
    
-    const int win_under_cordinat = centerCol + centerCol; //tpum e hushumnery
-    gotoxy(centerRow - 15, game_name_hight + Settings_count + 5 );
+    //tpum e hushumnery
+    gotoxy(centerCol - 15, game_name_hight + Settings_count + 5 );
     color_cout("Press 'W' for up Menu, or 'S' for down\n", 3);
-    gotoxy(centerRow - 15, game_name_hight + Settings_count + 6);
-    color_cout("Press 'Enter' to Enter\n", 3);
-    gotoxy(centerRow - 15, game_name_hight + Settings_count + 7);
-    color_cout("Press 'Esc' to Exit\n", 3);
+    gotoxy(centerCol - 15, game_name_hight + Settings_count + 6);
+    color_cout("Press 'A' or 'D' for change variant\n", 3);
+    gotoxy(centerCol - 15, game_name_hight + Settings_count + 7);
+    color_cout("Press 'Esc' to return main Menu\n", 3);
    
     for(int i = 0; i < Settings_count; ++i){
         gotoxy(Settings_Col,game_name_hight + i);

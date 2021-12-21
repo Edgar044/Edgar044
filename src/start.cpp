@@ -8,22 +8,22 @@
 #include "../Headers/start.hpp"
 
 //the Start main function
-void Start_Game(const int centerRow, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
+void Start_Game(const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
     constexpr bool Sleep_Show = 0;
     constexpr int game_name_hight = 15;
     const int game_level = board_size - 2;// xaxataxtaki chaperic imanum enq xaxi makardaky 
-    Show_Game_Name(centerRow, Sleep_Show);
+    Show_Game_Name(centerCol, Sleep_Show);
     
     std::string nameTemp;
-    gotoxy(centerRow - 12, game_name_hight);
+    gotoxy(centerCol - 12, game_name_hight);
     std::cout<<"Enter name: \n";
-    gotoxy(centerRow, game_name_hight);
+    gotoxy(centerCol, game_name_hight);
     normal();
     std::cin >> nameTemp;
     currentUser.Set_name(nameTemp);
     
     //sksum e xaxy
-    Show_Game_Name(centerRow, Sleep_Show);
+    Show_Game_Name(centerCol, Sleep_Show);
     int num=0;
     int** matrix = new int*[board_size];
     for(int i = 0; i < board_size; ++i){
@@ -35,8 +35,8 @@ void Start_Game(const int centerRow, const int board_size,const int board_color,
         }
     }
         
-    Show_Board(centerRow, board_size, board_color);
-    const int Board_Col = centerRow - (board_size * 4)/2; //vorpisi tpi mejtexic
+    Show_Board(centerCol, board_size, board_color);
+    const int Board_Col = centerCol - (board_size * 4)/2; //vorpisi tpi mejtexic
     const int real_size = board_size * 2 + 1; 
     int index_i = board_size - 1;                         //matrici skzbnakan i indexy
     int index_j = board_size - 1;                         //matrici skzbnakan j indexy
@@ -79,20 +79,20 @@ void Start_Game(const int centerRow, const int board_size,const int board_color,
         }
         
         time_value = secunds_timer(start_time);// jamanaki tpum verevy dzax ankyunum
-        gotoxy(centerRow - 20, 12);
+        gotoxy(centerCol - 20, 12);
         std::cout<<"Time: ";
-        print_time(time_value, board_color, centerRow - 14, 12);
+        print_time(time_value, board_color, centerCol - 14, 12);
        
-        gotoxy(centerRow + 5, 12);          // verevy aj ankyunum 
+        gotoxy(centerCol + 5, 12);          // verevy aj ankyunum 
         std::cout<<"Step Count: ";
-        gotoxy(centerRow + 17, 12);
+        gotoxy(centerCol + 17, 12);
         color_cout(step_count, board_color); // tpum e qayleri qanaky
         
-        gotoxy(centerRow - 20, game_name_hight + real_size); //pleyeri anuny nerqevy aj ankyunum 
+        gotoxy(centerCol - 20, game_name_hight + real_size); //pleyeri anuny nerqevy aj ankyunum 
         std::cout<<"Player Name: "; 
         color_cout(currentUser.Get_name(), board_color);
 
-        gotoxy(centerRow + 5, game_name_hight + real_size);
+        gotoxy(centerCol + 5, game_name_hight + real_size);
         std::cout << "Level: ";  color_cout(game_level, board_color);
 
        //diliting matrix
@@ -103,9 +103,9 @@ void Start_Game(const int centerRow, const int board_size,const int board_color,
             delete[] matrix;
             break;
         }
-        gotoxy(centerRow - 20, game_name_hight + real_size + 5);
+        gotoxy(centerCol - 20, game_name_hight + real_size + 5);
         color_cout("Press 'Esc' for back to main menu\n",3);
-        gotoxy(centerRow - 20, game_name_hight + real_size + 6);
+        gotoxy(centerCol - 20, game_name_hight + real_size + 6);
         color_cout("Press 'R' to reset\n",3);
         
     } 
@@ -115,7 +115,7 @@ void Start_Game(const int centerRow, const int board_size,const int board_color,
       std::cout<<std::setw(2) << board_size * board_size;
       for(char key_2 = -1; ; ){
             int color = rand() % 8;
-            gotoxy(centerRow - 3, real_size + game_name_hight + 3); 
+            gotoxy(centerCol - 3, real_size + game_name_hight + 3); 
             color_cout("YOU WIN\n",color);
             usleep(100000);
             cbreak();
@@ -135,10 +135,10 @@ void Start_Game(const int centerRow, const int board_size,const int board_color,
 }
 
 //functions bodies
-void Show_Board(const int centerRow, int size, const int color){
+void Show_Board(const int centerCol, int size, const int color){
     int lenght = size * 4;
     int hight = size * 2;
-    int Board_Col = centerRow - (lenght / 2 );
+    int Board_Col = centerCol - (lenght / 2 );
     for(int i=0; i<size; i++){
         if(i == 0){
             for(int j = 0; j < lenght; j++){
