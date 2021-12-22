@@ -12,9 +12,13 @@
  How to control
  
 w - up
+
 a - left
+
 s - down
+
 d - right
+
 enter - open highlighted option
 esc - exit
  
