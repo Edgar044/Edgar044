@@ -8,23 +8,24 @@
 #include "../Headers/records.hpp"
 
 
-/*Show_Menu functian nra hamar e vorpisi katari menyui funqcionaly ev 
- * usery aveli hesht haskana te inch hraman e uzum katarel
- * cucichi texasharjy katarvwum e keypress i ognutyamb:
- * 
- * */
 void Show_Menu(const int centerCol){
     User currentUser;
-    constexpr int topUsers_count = 5; //top hngyak
+    //top five
+    constexpr int topUsers_count = 5;
+    
+    //creating Menu list
     constexpr int Menu_Count = 5;
     int Menu_index = 0;
     std::string Menu[Menu_Count] = {"Start", "Settings", "Records", "About", "Exit"};
+    
+    //size and Color write static for doesn't change every time
     static int board_size = 3;
     static int Board_Color = 4;
+    
+    //hight game name in Y axis
     constexpr int game_name_hight = 15;// xaxi anvan barcrutyuny 
     const bool Sleep_Show = 0;
     Show_Game_Name(centerCol, Sleep_Show);
-    
     const int Menu_Col = centerCol - 3;
     constexpr int menu_color_value = 7;
     for(int i = 0; i < Menu_Count; ++i){
@@ -46,7 +47,8 @@ void Show_Menu(const int centerCol){
         key = keypress();
 
         switch(key){
-            case 'w': case 'W':// "W" sexmelis cucichy kbarcrana verev 
+            //when You click "W" the pointer will go up
+            case 'w': case 'W':
                 if(Menu_index != 0){
                     gotoxy(Menu_Col, game_name_hight + Menu_index);
                     color_cout(Menu[Menu_index], menu_color_value); 
@@ -60,8 +62,8 @@ void Show_Menu(const int centerCol){
                     gotoxy(Menu_Col,game_name_hight + Menu_index);
                     color_cout(Menu[Menu_index], 3);
                 } break;
-                
-            case 's': case 'S':// "S"sexmelis cucichy kijni nerqev
+            //when You click "S" the pointer will go down    
+            case 's': case 'S':
                 if(Menu_index != Menu_Count - 1){
                     gotoxy(Menu_Col, game_name_hight + Menu_index);
                     color_cout(Menu[Menu_index], menu_color_value);
@@ -76,7 +78,8 @@ void Show_Menu(const int centerCol){
                     color_cout(Menu[Menu_index],3);
                 } break;
     
-            case 0x0A:// erb sexmenq enter kkatari hamapatasxan indexov "case"-y 
+            //when you press enter it will execute the field with the given pointe 
+            case 0x0A: 
                 constexpr int start_Game = 0;
                 constexpr int settings_Game = 1;
                 constexpr int records_Game = 2;
@@ -99,6 +102,7 @@ void Show_Menu(const int centerCol){
                         system("reset"); exit(0);
                         break;                        
                 }
+                //last after all iteration call the Menu function
                 Show_Menu(centerCol);          
         }
     } 

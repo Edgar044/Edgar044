@@ -11,9 +11,11 @@
 void Start_Game(const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){
     constexpr bool Sleep_Show = 0;
     constexpr int game_name_hight = 15;
-    const int game_level = board_size - 2;// xaxataxtaki chaperic imanum enq xaxi makardaky 
+    //level determination by size
+    const int game_level = board_size - 2; 
     Show_Game_Name(centerCol, Sleep_Show);
     
+    //enter player name
     std::string nameTemp;
     gotoxy(centerCol - 12, game_name_hight);
     std::cout<<"Enter name: \n";
@@ -22,8 +24,8 @@ void Start_Game(const int centerCol, const int board_size,const int board_color,
     std::cin >> nameTemp;
     currentUser.Set_name(nameTemp);
     
-    //sksum e xaxy
     Show_Game_Name(centerCol, Sleep_Show);
+    //creating board    
     int num=0;
     int** matrix = new int*[board_size];
     for(int i = 0; i < board_size; ++i){
@@ -34,13 +36,14 @@ void Start_Game(const int centerCol, const int board_size,const int board_color,
           matrix[i][j] = ++num;
         }
     }
-        
+    
     Show_Board(centerCol, board_size, board_color);
-    const int Board_Col = centerCol - (board_size * 4)/2; //vorpisi tpi mejtexic
+    
+    //const int Board_Col = centerCol - (board_size * 4)/2; //vorpisi tpi mejtexic
     const int real_size = board_size * 2 + 1; 
     int index_i = board_size - 1;                         //matrici skzbnakan i indexy
     int index_j = board_size - 1;                         //matrici skzbnakan j indexy
-    int ptr_x = Board_Col + index_i * 4;                  //cucichi
+   // int ptr_x = Board_Col + index_i * 4;                  //cucichi
     int ptr_y = game_name_hight + index_j * 2;            //skzbnakan kordinatnery
     
     std::time_t result = std::time(nullptr);             // for start time

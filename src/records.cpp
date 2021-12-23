@@ -69,7 +69,7 @@ void Records_Game(const int centerCol, User currentUser, const int topUsers_coun
 
 void read_File(User* topUser, const int topUsers_count, std::string way){
     std::ifstream readFile(way);
-    for(int i = 0; i<topUsers_count; ++i){    
+    for(int i = 0; i < topUsers_count; ++i){    
         std::string temp_name;
         std::string temp_step_count;
         std::string temp_record_time;
@@ -141,7 +141,7 @@ void show_table(const int centerCol, const int name_hight, User* printUser, cons
     }
     
     for(int i = 0; i<users_count; ++i){
-        if(printUser[i].Get_record_time() >= printUser[users_count - 1].Get_record_time()){
+        if(printUser[i].Get_record_time() > printUser[users_count - 1].Get_record_time()){
             std::cout<<"\n";   break;
         }
         gotoxy(X_table + 3, Y_table + i + 1); color_cout(printUser[i].Get_name(), row_color);

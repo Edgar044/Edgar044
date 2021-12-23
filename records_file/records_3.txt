@@ -10,6 +10,6 @@ George
 Lisa
 268
 124
-Name
-99999
-99999
+Gagik
+282
+150
