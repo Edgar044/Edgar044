@@ -25,9 +25,9 @@ void Show_About_Game(const int Center);
 //for cursor muvment
 void gotoxy(int x, int y);
 //coloring function for strings 
-void color_cout(std::string text, int text_color);//gunavorman functia
+void color_cout(const std::string text, const int text_color);
 //coloring function for integers
-void color_cout(int text, int text_color);// gunavorman funqciai gerbernum interi hamar
+void color_cout(const int text, const int text_color);
 //time printing in normal format
 void print_time(const int secunds, const int color_value, int X, const int Y);
 

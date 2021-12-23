@@ -59,7 +59,7 @@ int keypress(){
 }
 
 //coloring string
-void color_cout(std::string text, int text_color){
+void color_cout(const std::string text, const int text_color){
         switch(text_color)
         { 
             case  1: std::cout << "\x1b[90;1m" << text << "\x1b[0m\n"; break; // gray       1
@@ -76,7 +76,7 @@ void color_cout(std::string text, int text_color){
 }
 
 //coloring integers
-void color_cout(int text, int text_color){
+void color_cout(const int text, const int text_color){
         switch(text_color)
         { 
             case  1: std::cout << "\x1b[90;1m" << std::setw(2) << text << "\x1b[0m\n"; break; // gray       1
@@ -107,7 +107,7 @@ void Show_Game_Name(const int centerCol, const bool sleep_show ){
         sleep_time = 150000;
     }
     //initialization y cordinat
-    int start_y = 2;
+    int start_y = 1;
  system("clear");
 gotoxy(startRow, ++start_y);
 color_cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(sleep_time);
@@ -194,7 +194,7 @@ void Show_About_Game(const int Center){//xaxi masin informacia
 }
 
 //printing time in notmal format 
-void print_time(const int secunds, const int color_value,const int X, const int Y){
+void print_time(const int secunds, const int color_value, const int X, const int Y){
     gotoxy(X, Y); std::setw(2); color_cout(secunds / 3600, color_value);
     gotoxy(X + 2, Y); color_cout(":", color_value);
     gotoxy(X + 3, Y); color_cout(((secunds % 3600) / 60), color_value); 
