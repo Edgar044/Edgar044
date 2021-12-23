@@ -18,17 +18,18 @@ void normal();
 int keypress();
 
 //My Functions
-void Show_Game_Name(const int centerRow, const bool sleep_show);//cuyc e talis xaxi anuny 
-
-void Show_About_Game(const int Center);//cuyc e talis xaxi masin
-
-void gotoxy(int x, int y);//kursori texasharji functia
-
+//print Game name 
+void Show_Game_Name(const int centerRow, const bool sleep_show); 
+//print game info
+void Show_About_Game(const int Center);
+//for cursor muvment
+void gotoxy(int x, int y);
+//coloring function for strings 
 void color_cout(std::string text, int text_color);//gunavorman functia
-
+//coloring function for integers
 void color_cout(int text, int text_color);// gunavorman funqciai gerbernum interi hamar
-
-void print_time(const int secunds, const int color_value, int X, const int Y) ; //jamanaki tpum varkyanneri mijocov
+//time printing in normal format
+void print_time(const int secunds, const int color_value, int X, const int Y);
 
 #endif // INPUT_HPP
 

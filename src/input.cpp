@@ -58,8 +58,8 @@ int keypress(){
     return -1;
 }
 
-void color_cout(std::string text, int text_color)// gunavor tpelu functia
-{
+//coloring string
+void color_cout(std::string text, int text_color){
         switch(text_color)
         { 
             case  1: std::cout << "\x1b[90;1m" << text << "\x1b[0m\n"; break; // gray       1
@@ -75,9 +75,8 @@ void color_cout(std::string text, int text_color)// gunavor tpelu functia
         }
 }
 
-
-void color_cout(int text, int text_color)// gunavor tpelu functia
-{
+//coloring integers
+void color_cout(int text, int text_color){
         switch(text_color)
         { 
             case  1: std::cout << "\x1b[90;1m" << std::setw(2) << text << "\x1b[0m\n"; break; // gray       1
@@ -93,18 +92,19 @@ void color_cout(int text, int text_color)// gunavor tpelu functia
         }
 }
 
-
-void gotoxy(const int x,const int y){// kursori sharji hamar ogtagorcum enq printf hramany
-                          // vorin vorpes parametrer talis enq kordinatnery
+//use printf function for move cursor 
+void gotoxy(const int x,const int y){
     printf("%c[%d;%df",0x1B, y, x);
 }
 
+
 void Show_Game_Name(const int centerRow, const bool sleep_show ){// xaxi anuny tpelu hamar
-   const int startRow = centerRow - (146 / 2);
-   int sleep_time = 0;
-   if(sleep_show){
-       sleep_time = 150000;
-   }
+   
+    const int startRow = centerRow - (146 / 2);
+    int sleep_time = 0;
+    if(sleep_show){
+        sleep_time = 150000;
+    }
  system("clear");
 gotoxy(startRow,1);
 color_cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(sleep_time);

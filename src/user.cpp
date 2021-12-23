@@ -51,7 +51,7 @@ void User::Print(){
     std::cout<<"      |";
 }
 
-void User::Copy(const User &cloneUser){
+User::User(const User &cloneUser){
     name = cloneUser.name;
     step_count = cloneUser.step_count;
     record_time = cloneUser.record_time;

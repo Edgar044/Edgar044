@@ -1,11 +1,18 @@
 #ifndef USER_H
 #define USER_H
 
+//max value for correct work program
+constexpr int maxValue = 99999;
+
 class User
 {
     public:
+        //defoult constructor
         User();
+        //constructor
         User(std::string  name);
+        //copy constructor
+        User(const User &cloneUser);       
         void Set_name(std::string name);
         std::string Get_name();
         void Show_name();
@@ -15,17 +22,18 @@ class User
         int Get_record_time();
         void Set_step_count(int count);
         int Get_step_count();
+        //print user information
         void Print();
-        void Copy(const User &cloneUser);
-           
-
+       
         ~User();
 
     private: 
-
+        //user name
         std::string name;
-        int step_count = 99999;
-        int record_time = 99999;
+        //initialization user step count
+        int step_count = maxValue;
+        //initialization user record time
+        int record_time = maxValue;
 
 };
 

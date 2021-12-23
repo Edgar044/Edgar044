@@ -97,9 +97,9 @@ void write_File(User* addUser, const int addUsers_count, std::string way){
 
 void chenge_user(User &first, User &second){
     User temp;
-    temp.Copy(first);
-    first.Copy(second);
-    second.Copy(temp);
+    temp = User(first);
+    first = User(second);
+    second = User(temp);
 
 }
 
