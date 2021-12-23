@@ -3,7 +3,6 @@
 #include <ctime>
 #include <unistd.h>
 #include "../Headers/input.hpp"
-//#include "../Headers/menu.hpp"
 #include "../Headers/records.hpp"
 #include "../Headers/start.hpp"
 
@@ -38,15 +37,17 @@ void Start_Game(const int centerCol, const int board_size,const int board_color,
     }
     
     Show_Board(centerCol, board_size, board_color);
-    
-    const int Board_Col = centerCol - (board_size * 4)/2; //vorpisi tpi mejtexic
+    //find board cordinates
+    const int Board_Col = centerCol - (board_size * 4)/2;
     const int real_size = board_size * 2 + 1; 
-    int index_i = board_size - 1;                         //matrici skzbnakan i indexy
-    int index_j = board_size - 1;                         //matrici skzbnakan j indexy
-    int ptr_x = Board_Col + index_i * 4;                  //cucichi
-    int ptr_y = game_name_hight + index_j * 2;            //skzbnakan kordinatnery
-    
-    std::time_t result = std::time(nullptr);             // for start time
+    //initialization matrix i and j index
+    int index_i = board_size - 1;                         
+    int index_j = board_size - 1;
+    //initialization pointer cordinates
+    int ptr_x = Board_Col + index_i * 4;                  
+    int ptr_y = game_name_hight + index_j * 2;            
+    //for start time
+    std::time_t result = std::time(nullptr);             
     int start_time = result; 
     bool mix = 0, win = 0;
     int step_count = 0;
@@ -81,24 +82,26 @@ void Start_Game(const int centerCol, const int board_size,const int board_color,
             mix = 0;
         }
         
-        time_value = secunds_timer(start_time);// jamanaki tpum verevy dzax ankyunum
+        //print time
+        time_value = secunds_timer(start_time);
         gotoxy(centerCol - 20, 12);
         std::cout<<"Time: ";
         print_time(time_value, board_color, centerCol - 14, 12);
-       
-        gotoxy(centerCol + 5, 12);          // verevy aj ankyunum 
+        //print step count
+        gotoxy(centerCol + 5, 12);          
         std::cout<<"Step Count: ";
         gotoxy(centerCol + 17, 12);
-        color_cout(step_count, board_color); // tpum e qayleri qanaky
-        
-        gotoxy(centerCol - 20, game_name_hight + real_size); //pleyeri anuny nerqevy aj ankyunum 
+        color_cout(step_count, board_color); 
+        //print user name
+        gotoxy(centerCol - 20, game_name_hight + real_size);  
         std::cout<<"Player Name: "; 
         color_cout(currentUser.Get_name(), board_color);
-
+        //print level  
         gotoxy(centerCol + 5, game_name_hight + real_size);
-        std::cout << "Level: ";  color_cout(game_level, board_color);
+        std::cout << "Level: ";
+        color_cout(game_level, board_color);
 
-       //diliting matrix
+        //diliting dinamic matrix
         if(key_1 == 27 || win == 1){  
             for(int i=0; i<board_size; ++i){
                 delete[] matrix[i];
@@ -127,17 +130,18 @@ void Start_Game(const int centerCol, const int board_size,const int board_color,
                 break;         
             }
         }
-      //Recordy grancum e matricum
+      //campear result end write it in file
       currentUser.Set_step_count(step_count);
       currentUser.Set_record_time(time_value);
       campare_results(currentUser, topUsers_count, game_level);
 
     } else { 
-        std::cout<<"\n"; // grum enq nor toxic vorpiso 0.0 ketum axb chtpi 
+        std::cout<<"\n"; //for garbige 
     }
 }
 
-//functions bodies
+//****functions bodies****
+//printing board lines through symbols
 void Show_Board(const int centerCol, int size, const int color){
     int lenght = size * 4;
     int hight = size * 2;
@@ -187,6 +191,8 @@ void Show_Board(const int centerCol, int size, const int color){
    gotoxy(Board_Col + lenght, 14 + hight); color_cout("╝\n",color);
    }
 }
+
+//step function takes steps and changes values in the matrix
 void step(int **Mat, int &i, int &j,const int size, char step_num, const int Board_Col, int &step){
     switch(step_num){ 
         case '8': case 8: case 'w': case 'W'://up
@@ -228,6 +234,7 @@ void step(int **Mat, int &i, int &j,const int size, char step_num, const int Boa
         }    
 }
  
+//chek is the matrix ascending or not?
 bool chek_win(int **Mat, const int size){
     int count = 1; 
     for(int i = 0; i < size; ++i){
@@ -240,6 +247,7 @@ bool chek_win(int **Mat, const int size){
      return 1;
  }
 
+//time count
 int secunds_timer (int start_time){
     std::time_t currentTime = time(nullptr);
     return currentTime - start_time;

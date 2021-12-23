@@ -2,14 +2,23 @@
 #include <string>
 #include "../Headers/user.hpp"
   
-User::User(){        //defolt
+//defoult constructor
+User::User(){        
     name = "Name";
     step_count = 0;
     record_time = 0;
 }
 
-User::User(std::string name){ //constructor
+//constructor
+User::User(std::string name){
     this->name = name;    
+}
+
+//copy constructor
+User::User(const User &cloneUser){
+    name = cloneUser.name;
+    step_count = cloneUser.step_count;
+    record_time = cloneUser.record_time;
 }
 
 void User::Set_name(std::string name){ //
@@ -23,6 +32,7 @@ void User::Show_name(){
     std::cout << name;
 }
 
+//print time in normal format
 void User::Show_record_time(){
     std::cout << record_time/3600 << ":"<< (record_time % 3600) / 60<< ":"<< (record_time % 3600 ) % 60 ;
 }
@@ -45,19 +55,14 @@ int User::Get_step_count(){
     return step_count;
 }
 
+//print users info
 void User::Print(){
     std::cout<<name<<"   |    "<<step_count<<"      |   ";
     Show_record_time();
     std::cout<<"      |";
 }
 
-User::User(const User &cloneUser){
-    name = cloneUser.name;
-    step_count = cloneUser.step_count;
-    record_time = cloneUser.record_time;
-}
-
-
+//destructor
 User::~User(){
     //std::cout<<"work destruktor\n";
 };

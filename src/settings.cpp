@@ -1,7 +1,4 @@
 #include <iostream>
-//#include <ctime>
-//#include <stdlib.h>
-//#include <unistd.h>
 #include "../Headers/input.hpp"
 #include "../Headers/records.hpp"
 #include "../Headers/settings.hpp"
@@ -36,7 +33,7 @@ void Settings_Game(const int centerCol, int *Board_Size, int *Color_index){
     gotoxy(Settings_Col, game_name_hight + Settings_index); // arajnayin yntrvac toxy
     color_cout(Settings[Settings_index], 3);
     
-    // yntrvac chapi skzbnarjeqavorum
+    //print first board size
     gotoxy(Settings_Col + 13, game_name_hight + Settings_index);
     color_cout(*Board_Size, 5);
     gotoxy(Settings_Col + 16, game_name_hight + Settings_index);
@@ -44,7 +41,7 @@ void Settings_Game(const int centerCol, int *Board_Size, int *Color_index){
     gotoxy(Settings_Col + 17, game_name_hight + Settings_index);
     color_cout(*Board_Size, 5);
 
-    //yntrvac guyni skzbnarjeqavorum
+    //print first color
     gotoxy(Settings_Col + 14, game_name_hight + 1 + Settings_index);
     color_cout(Colors[*Color_index], *Color_index);
     
@@ -102,6 +99,8 @@ void Settings_Game(const int centerCol, int *Board_Size, int *Color_index){
     }
 }
 
+
+//change levels
 void select_level(int *Board_Size, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek){
     constexpr int min_Board_Size = 3;
     constexpr int max_Board_Size = 6;
@@ -153,6 +152,7 @@ void select_level(int *Board_Size, const int Settings_Col, const int Settings_hi
     }
 }
 
+//change colors
 void select_color(std::string Colors[], const int Color_Count, int *Color_index, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek){
      
     if (chek == 'a' || chek == 'A'){

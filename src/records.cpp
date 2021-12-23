@@ -9,16 +9,14 @@ void Records_Game(const int centerCol, User currentUser, const int topUsers_coun
     Show_Game_Name(centerCol, Sleep_Show);
     const int game_name_hight = 9;
     
+    //crating array users
     User topUsers[topUsers_count]; 
     const int min_level = 1;
     const int max_level = 4;
     int level = 1;
-    
-    gotoxy(centerCol - 10, game_name_hight + 3);
-    std::cout<<"Level:";
-    color_cout(level, 4);
+    //reading file contents
     read_File(topUsers, topUsers_count,file_way(level));
-    show_table(centerCol, game_name_hight, topUsers, topUsers_count); 
+    show_table(centerCol, game_name_hight, topUsers, topUsers_count, level); 
     
     for(char key = -1; key != 27 ; ){
         cbreak();
@@ -27,39 +25,26 @@ void Records_Game(const int centerCol, User currentUser, const int topUsers_coun
             case 'a': case 'A': case 4: 
                 if(level == min_level){
                     level = max_level;
-                    gotoxy(centerCol - 10, game_name_hight + 3);
-                    std::cout<<"Level:";
-                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerCol, game_name_hight, topUsers, topUsers_count);
+                    show_table(centerCol, game_name_hight, topUsers, topUsers_count, level);
                 } else {
                     --level;
-                    gotoxy(centerCol - 10, game_name_hight + 3);
-                    std::cout<<"Level:";
-                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerCol, game_name_hight, topUsers, topUsers_count); 
+                    show_table(centerCol, game_name_hight, topUsers, topUsers_count, level); 
                 }
                  break;
             case 'd': case 'D': case 6:
                 if(level == max_level){
-                    level = min_level;
-                    gotoxy(centerCol - 10, game_name_hight + 3);
-                    std::cout<<"Level:";
-                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerCol, game_name_hight, topUsers, topUsers_count); 
+                    show_table(centerCol, game_name_hight, topUsers, topUsers_count, level); 
                 } else {
                     ++level;
-                    gotoxy(centerCol - 10, game_name_hight + 3);
-                    std::cout<<"Level:";
-                    color_cout(level, 4);
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
-                    show_table(centerCol, game_name_hight, topUsers, topUsers_count);               
+                    show_table(centerCol, game_name_hight, topUsers, topUsers_count, level);               
                 }
                  break;
         }
@@ -67,6 +52,7 @@ void Records_Game(const int centerCol, User currentUser, const int topUsers_coun
     std::cout<<"\n";
 }
 
+//reads from file
 void read_File(User* topUser, const int topUsers_count, std::string way){
     std::ifstream readFile(way);
     for(int i = 0; i < topUsers_count; ++i){    
@@ -85,6 +71,7 @@ void read_File(User* topUser, const int topUsers_count, std::string way){
     readFile.close();
 }
 
+//writes in a file
 void write_File(User* addUser, const int addUsers_count, std::string way){
     std::ofstream writeFile(way);
     for(int i = 0; i < addUsers_count; ++i){
@@ -95,6 +82,7 @@ void write_File(User* addUser, const int addUsers_count, std::string way){
     writeFile.close();
 }
 
+//change users with the help of a copyconstructor
 void chenge_user(User &first, User &second){
     User temp;
     temp = User(first);
@@ -103,6 +91,7 @@ void chenge_user(User &first, User &second){
 
 }
 
+//getting the level return the path to the file
 std::string file_way(const int level){
     std::string Way;
     switch (level){
@@ -114,6 +103,7 @@ std::string file_way(const int level){
     return Way;
 }
 
+//campare current user whit top users
 void campare_results(User currentUser,const int topUsers_count, const int level){
    User topUser[topUsers_count];
    read_File(topUser, topUsers_count, file_way(level));
@@ -127,26 +117,39 @@ void campare_results(User currentUser,const int topUsers_count, const int level)
 
 }
 
-
-void show_table(const int centerCol, const int name_hight, User* printUser, const int users_count){
-    int X_table = centerCol - 20;
-    int Y_table = name_hight + 5;
-    gotoxy(X_table + 3, Y_table); std::cout<<"Name  |"<< "Step Count |"<<"Record Time |";
-    std::cout<<"\033[J";//jmjum e nerqevi hatvacy
+//print top five users
+void show_table(const int centerCol, const int name_hight, User* printUser, const int users_count, const int level){
+    //initialization x and y cordinats 
+    int X_table = centerCol - 15;
+    int Y_table = name_hight + 7;
+    gotoxy(X_table + 10, Y_table - 3);
+    std::cout<<"Level:";
+    color_cout(level, 4);
+    gotoxy(X_table + 3, Y_table - 1); std::cout<<"Name  |"<< "Step Count |"<<"Record Time |";
+    //dilite inside section
+    std::cout<<"\033[J";
     int row_color = 4;
-    
+    //numbness
     for(int i=0; i< users_count; ++i){
-        gotoxy(X_table, Y_table + i + 1);
+        gotoxy(X_table, Y_table + i);
         std::cout << i + 1 <<".";
     }
-    
+    //print users
     for(int i = 0; i<users_count; ++i){
         if(printUser[i].Get_record_time() > printUser[users_count - 1].Get_record_time()){
             std::cout<<"\n";   break;
         }
-        gotoxy(X_table + 3, Y_table + i + 1); color_cout(printUser[i].Get_name(), row_color);
-        gotoxy(X_table + 14, Y_table + i + 1); color_cout(printUser[i].Get_step_count(), row_color);
-        print_time(printUser[i].Get_record_time(), row_color, X_table + 23, Y_table + i + 1);
+        gotoxy(X_table + 3, Y_table + i); color_cout(printUser[i].Get_name(), row_color);
+        gotoxy(X_table + 14, Y_table + i); color_cout(printUser[i].Get_step_count(), row_color);
+        print_time(printUser[i].Get_record_time(), row_color, X_table + 23, Y_table + i);
         std::cout<<"\n";
     }
+    //help for control
+    gotoxy(centerCol - 15, name_hight + Y_table + 5 );
+    color_cout("Press 'A' for see previous level\n",3);
+    gotoxy(centerCol - 15, name_hight + Y_table + 6);
+    color_cout("Press 'D' for see next level\n",3);
+    gotoxy(centerCol - 15, name_hight + Y_table + 7);
+    color_cout("Press 'Esc' to return main Menu\n",3);
 }
+

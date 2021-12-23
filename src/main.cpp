@@ -1,4 +1,3 @@
-//main.cpp
 #include <iostream>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -14,6 +13,7 @@ int main(){
     int userRowSize = 0;
     int userColSize = 0;
     userWinSize(&userRowSize, &userColSize);
+    //finde center windows 
     const int centerCol = userColSize/2;
     const int centerRow = userRowSize/2;
     const bool sleep_show = 1;

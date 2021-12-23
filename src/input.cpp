@@ -98,76 +98,90 @@ void gotoxy(const int x,const int y){
 }
 
 
-void Show_Game_Name(const int centerRow, const bool sleep_show ){// xaxi anuny tpelu hamar
-   
-    const int startRow = centerRow - (146 / 2);
+void Show_Game_Name(const int centerCol, const bool sleep_show ){
+    //146 is lenght game name
+    //it divide 2 for define center name
+    const int startRow = centerCol - (146 / 2);
     int sleep_time = 0;
     if(sleep_show){
         sleep_time = 150000;
     }
+    //initialization y cordinat
+    int start_y = 2;
  system("clear");
-gotoxy(startRow,1);
+gotoxy(startRow, ++start_y);
 color_cout("********  **        ****  *********   ****  ***      **   ********           ********     **      **  **********    **********  **        ******** ",4); usleep(sleep_time);
-gotoxy(startRow,2);
+gotoxy(startRow, ++start_y);
 color_cout("**        **         **    **     **   **   ***      **  **      **          **     **    **      **         **            **   **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,3);
+gotoxy(startRow, ++start_y);
 color_cout("**        **         **    **     **   **   ** *     **  **      **          **     **    **      **        **            **    **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,4);
+gotoxy(startRow, ++start_y);
 color_cout("**        **         **    **     **   **   **  *    **  **      **          **     **    **      **       **            **     **        *******  ",4); usleep(sleep_time);
-gotoxy(startRow,5);
+gotoxy(startRow, ++start_y);
 color_cout("********  **         **    **     **   **   **   *   **  **                  ********     **      **      **            **      **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,6);
+gotoxy(startRow, ++start_y);
 color_cout("      **  **         **    **     **   **   **    *  **  **   *****          **           **      **     **            **       **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,7);
+gotoxy(startRow, ++start_y);
 color_cout("      **  **         **    **     **   **   **     * **  **      **          **           **      **    **            **        **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,8);
+gotoxy(startRow, ++start_y);
 color_cout("      **  **         **    **     **   **   **      ***  **      **          **           **      **   **            **         **        **       ",4); usleep(sleep_time);
-gotoxy(startRow,9);
+gotoxy(startRow, ++start_y);
 color_cout("********  ********  ****  *********   ****  **      ***   ********           **           **********  **********    **********  ********  ******** ",4); usleep(sleep_time);
 }
 
 void Show_About_Game(const int Center){//xaxi masin informacia
     const bool Sleep_Show = 0;
     Show_Game_Name(Center,Sleep_Show);
-    int About_Col = Center - (66/2); // 66y mer mek toxi erkarutyunn e 
-    gotoxy(Center - 5,12);
+    //66 is lenght one string
+    int About_Col = Center - (66/2);  
+    //initialization y cordinat
+    int start_y = 13;    
+    gotoxy(Center - 5, ++start_y);
     color_cout("About Game\n",5);
-    
-    gotoxy(About_Col,14);
+    //+2 for indent
+    start_y+=2; 
+    gotoxy(About_Col, ++start_y);
     std::cout<<"A sliding puzzle or fiften is a puzzle combination that chelenges\n"  ;      
-    gotoxy(About_Col,15);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"the player to slide along certain paths  in order to  establish a \n";
-    gotoxy(About_Col,16);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"certain final configuration. The moving parts can be simple shopes\n" ;
-    gotoxy(About_Col,17);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"tor they can be printed with colors, patterns, parts of a larger\n" ;
-    gotoxy(About_Col,18);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"timage, numbers or letters. Sliding puzzles are essentially\n"; 
-    gotoxy(About_Col,19);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"two-dimensional in nature. The oldest type of sliding puzzle is the \n";
-    gotoxy(About_Col,20);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"Fifteen puzzle, invented by Noyes Chapman in 1880: to Sam Loyd. \n";
-    gotoxy(About_Col,21);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"   It can be shown that exactly half of all possible 20,922,789,888,000\n";
-    gotoxy(About_Col,22);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"(= 16!) Initial positions of the tags cannot be brought to the\n";
-    gotoxy(About_Col,23);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"assembled form: \n";
-    gotoxy(About_Col,24);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"   If we allow the box to rotate 90 degrees, in which the images of the\n";
-    gotoxy(About_Col,25);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"tnumbers will be lying on their side, then we can translate the unsolvable\n";
-    gotoxy(About_Col,26);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"tcombinations into solvable ones (and vice versa). Thus, if instead of\n";
-    gotoxy(About_Col,27);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"tnumbers on the knuckles, you put dots and do not fix the position of the box,\n";
-    gotoxy(About_Col,28);
+    gotoxy(About_Col, ++start_y);
     std::cout<<"then there will be no unsolvable combinations at all.\n";
-    gotoxy(Center - 5,30);
-    color_cout("How to play\n",5);
     
+    start_y+=2;
+    gotoxy(Center - 5,start_y++);
+    color_cout("How to play\n",5);gotoxy(About_Col, ++start_y);
+    std::cout<<"W -> up\n";gotoxy(About_Col, ++start_y);
+    std::cout<<"A -> left\n";gotoxy(About_Col, ++start_y);
+    std::cout<<"S -> down\n";gotoxy(About_Col, ++start_y);
+    std::cout<<"D -> right\n";gotoxy(About_Col, ++start_y);
+    std::cout<<"Enter -> open highlighted option";gotoxy(About_Col, ++start_y);
+    std::cout<<"Esc -> exit\n";
 
-
+    //
     for(char key = -1;;){ 
         cbreak();
         key = keypress();
@@ -179,12 +193,13 @@ void Show_About_Game(const int Center){//xaxi masin informacia
     }
 }
 
+//printing time in notmal format 
 void print_time(const int secunds, const int color_value,const int X, const int Y){
-    gotoxy(X,Y); std::setw(2); color_cout(secunds/3600, color_value);
-    gotoxy(X + 2,Y); color_cout(":", color_value);
-    gotoxy(X + 3,Y); color_cout(((secunds % 3600) / 60), color_value); 
-    gotoxy(X + 5,Y); color_cout(":", color_value);
-    gotoxy(X + 6,Y); color_cout(((secunds % 3600) % 60),color_value);
+    gotoxy(X, Y); std::setw(2); color_cout(secunds / 3600, color_value);
+    gotoxy(X + 2, Y); color_cout(":", color_value);
+    gotoxy(X + 3, Y); color_cout(((secunds % 3600) / 60), color_value); 
+    gotoxy(X + 5, Y); color_cout(":", color_value);
+    gotoxy(X + 6, Y); color_cout(((secunds % 3600) % 60),color_value);
     std::cout<<"\n";
 
 }

@@ -11,7 +11,7 @@ void chenge_user(User &first, User &second);
 //getting the level return the path to the file
 std::string file_way(const int level);
 //print top five names
-void show_table(const int centerRow, const int name_hight, User* printUser, const int users_count);
+void show_table(const int centerRow, const int name_hight, User* printUser, const int users_count, const int level);
 //record main function
 void Records_Game(const int centerRow, User currentUser, const int topUsers_count);
 //capare players results
