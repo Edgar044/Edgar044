@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "../Headers/input.hpp"
-#include "../Headers/records.hpp"
+#include "../include/input.hpp"
+#include "../include/records.hpp"
 
 
 void Records_Game(const int centerCol, User currentUser, const int topUsers_count){
@@ -37,6 +37,7 @@ void Records_Game(const int centerCol, User currentUser, const int topUsers_coun
                  break;
             case 'd': case 'D': case 6:
                 if(level == max_level){
+                    level = min_level;
                     read_File(topUsers, topUsers_count,file_way(level));
                     std::cout<<"\n";
                     show_table(centerCol, game_name_hight, topUsers, topUsers_count, level); 
@@ -95,10 +96,10 @@ void chenge_user(User &first, User &second){
 std::string file_way(const int level){
     std::string Way;
     switch (level){
-        case 1: Way = "records_file/records_1.txt"; break;
-        case 2: Way = "records_file/records_2.txt"; break;
-        case 3: Way = "records_file/records_3.txt"; break;
-        case 4: Way = "records_file/records_4.txt"; break;
+        case 1: Way = "data/records_1.txt"; break;
+        case 2: Way = "data/records_2.txt"; break;
+        case 3: Way = "data/records_3.txt"; break;
+        case 4: Way = "data/records_4.txt"; break;
     }
     return Way;
 }

@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../Headers/input.hpp"
-#include "../Headers/records.hpp"
-#include "../Headers/settings.hpp"
+#include "../include/input.hpp"
+#include "../include/records.hpp"
+#include "../include/settings.hpp"
 
 void select_level(int *Board_Size, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);
 void select_color(std::string Colors[], const int Color_Count, int *Color_index, const int Settings_Col, const int Settings_hight, const int Settings_index, const char chek);

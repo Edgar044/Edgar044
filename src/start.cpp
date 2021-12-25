@@ -2,9 +2,9 @@
 #include <iomanip>
 #include <ctime>
 #include <unistd.h>
-#include "../Headers/input.hpp"
-#include "../Headers/records.hpp"
-#include "../Headers/start.hpp"
+#include "../include/input.hpp"
+#include "../include/records.hpp"
+#include "../include/start.hpp"
 
 //the Start main function
 void Start_Game(const int centerCol, const int board_size,const int board_color, User &currentUser, const int topUsers_count){

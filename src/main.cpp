@@ -1,8 +1,8 @@
 #include <iostream>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include "../Headers/menu.hpp"
-#include "../Headers/input.hpp"
+#include "../include/menu.hpp"
+#include "../include/input.hpp"
 
 //to get the window  size 
 void userWinSize(int* winRow, int* winCol);

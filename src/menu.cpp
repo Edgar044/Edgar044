@@ -1,11 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
-#include "../Headers/menu.hpp"
-#include "../Headers/input.hpp"
-#include "../Headers/start.hpp"
-#include "../Headers/user.hpp"
-#include "../Headers/settings.hpp"
-#include "../Headers/records.hpp"
+#include "../include/menu.hpp"
+#include "../include/input.hpp"
+#include "../include/start.hpp"
+#include "../include/user.hpp"
+#include "../include/settings.hpp"
+#include "../include/records.hpp"
 
 
 void Show_Menu(const int centerCol){

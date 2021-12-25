@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "../Headers/user.hpp"
+#include "../include/user.hpp"
   
 //defoult constructor
 User::User(){        
